@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio-Varun Mangwani</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="img/1000085394.jpg" alt="Varun Mangwani">
+            </div>
+            <div class="btns">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Languages</a></li>
+                    <li><a href="#">Certifications</a></li>
+                    <li><a href="#">Contact Me</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="main">
+        <section class="intro">
+            <div class="intro-text">
+                <h1>Hi, I Am <span class="highlight">Varun</span></h1>
+                <h2>I am a <span class="typing"></span></h2>
+            </div>
+
+            <div class="intro-photo">
+                <img src="img/1000085394.jpg" alt="Varun Mangwani">
+            </div>
+        </section>
+    </div>
+
+    <hr>
+
+
+    <section class="languages">
+        <h2>Languages & Experience</h2>
+        <div class="lang-grid">
+            <div class="lang-card">
+                <h3>Python</h3>
+                <p>Intermediate — 2 years</p>
+            </div>
+            <div class="lang-card">
+                <h3>HTML/CSS</h3>
+                <p>Advanced — 3 years</p>
+            </div>
+            <div class="lang-card">
+                <h3>JavaScript</h3>
+                <p>Beginner — 1 year</p>
+            </div>
+            <!-- Add more cards as needed -->
+            <div class="lang-card">
+                <h3>Express</h3>
+                <p>Beginner — 1 year</p>
+            </div>
+            <div class="lang-card">
+                <h3>React JS</h3>
+                <p>Beginner — 1 year</p>
+            </div>
+            <div class="lang-card">
+                <h3>Node JS</h3>
+                <p>Beginner — 1 year</p>
+            </div>
+            <div class="lang-card">
+                <h3>Next JS</h3>
+                <p>Beginner — 1 year</p>
+            </div>
+            <div class="lang-card">
+                <h3>MongoDB</h3>
+                <p>Beginner — 1 year</p>
+            </div>
+        </div>
+    </section>
+    <!-- Put script AFTER the HTML so .typing exists -->
+    <script>
+        const roles = ["Web Developer", "Web Designer", "Coder", "Programmer"];
+        let i = 0, j = 0, isDeleting = false;
+
+        function typeEffect() {
+            const el = document.querySelector(".typing");
+            const current = roles[i];
+
+            el.textContent = isDeleting
+                ? current.substring(0, j--)
+                : current.substring(0, j++);
+
+            if (!isDeleting && j === current.length + 1) {
+                isDeleting = true;
+                setTimeout(typeEffect, 900);
+                return;
+            }
+            if (isDeleting && j === 0) {
+                isDeleting = false;
+                i = (i + 1) % roles.length;
+            }
+            setTimeout(typeEffect, 100);
+        }
+        typeEffect();
+
+
+        const img = document.querySelector('.intro-photo img');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    img.classList.add('in-view');
+                    img.classList.remove('out-view');
+                } else {
+                    img.classList.remove('in-view');
+                    img.classList.add('out-view');
+                }
+            });
+        }, { threshold: 0.5 }); // triggers when 50% of section is visible
+
+        observer.observe(document.querySelector('.intro-photo'));
+    </script>
+
+
+
+</body>
+
+</html>

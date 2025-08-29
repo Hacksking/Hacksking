@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @Hacksking
-- 👀 I’m interested in LEARNING ETHICAL HACKING
-- 🌱 I’m currently learning TOOLS USES
-- 💞️ I’m looking to collaborate on NOTHING
+- 👀 I’m am Learning To Code
+- 🌱 I’m Always Learning 
+- 💞️ I’m looking to collaborate on Websites
 - 📫 How to reach me arblaster8@gmail.com
 
 <!---

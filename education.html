@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub - Educational Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Arial', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .cards { transition: transform 0.3s ease; }
+        .cards:hover { transform: scale(1.05); }
+        .progress-bar { transition: width 0.5s ease; }
+        .fun-bg { background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/af82184b-2368-4eb2-b6b8-28135f916fd7.png') no-repeat center; background-size: cover; }
+        .quiz-option:hover { background-color: #e0f2fe; }
+        .lesson-content { animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="text-white">
+    <header class="bg-gradient-to-r from-purple-600 to-blue-600 p-6 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Learning Hub Adventure</h1>
+            <nav class="flex space-x-4">
+                <button class="nav-btn bg-white text-purple-600 px-4 py-2 rounded hover:bg-gray-200" data-section="dashboard">Dashboard</button>
+                <button class="nav-btn bg-white text-purple-600 px-4 py-2 rounded hover:bg-gray-200" data-section="topics">Topics</button>
+                <button class="nav-btn bg-white text-purple-600 px-4 py-2 rounded hover:bg-gray-200" data-section="quiz">Quiz Challenge</button>
+                <button class="nav-btn bg-white text-purple-600 px-4 py-2 rounded hover:bg-gray-200" data-section="progress">Progress</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <h2 class="text-4xl font-bold mb-6 text-center">Welcome to Learning Hub!</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-xl cards">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">[KNOWLEDGE BOOK] Math Explorer</h3>
+                    <p class="text-gray-700">Dive into numbers and patterns. Complete 2 lessons to earn a badge!</p>
+                    <div class="mt-4">
+                        <div class="progress-bar bg-pink-200 h-4 rounded">
+                            <div class="bg-pink-500 h-4 rounded progress-fill" style="width: 0%;" data-topic="math"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">0% complete</p>
+                    </div>
+                </div>
+                <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-xl cards">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">[MICROSCOPE] Science Investigator</h3>
+                    <p class="text-gray-700">Explore the wonders of nature and experiments.</p>
+                    <div class="mt-4">
+                        <div class="progress-bar bg-blue-200 h-4 rounded">
+                            <div class="bg-blue-500 h-4 rounded progress-fill" style="width: 0%;" data-topic="science"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">0% complete</p>
+                    </div>
+                </div>
+                <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-xl cards">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">[GLOBE] World History</h3>
+                    <p class="text-gray-700">Journey through time and discover history's stories.</p>
+                    <div class="mt-4">
+                        <div class="progress-bar bg-green-200 h-4 rounded">
+                            <div class="bg-green-500 h-4 rounded progress-fill" style="width: 0%;" data-topic="history"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">0% complete</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button id="start-adventure" class="bg-yellow-400 text-black px-6 py-3 rounded-full text-lg font-bold hover:bg-yellow-300 transition">Start Your Adventure!</button>
+            </div>
+        </section>
+
+        <!-- Topics Section -->
+        <section id="topics" class="section">
+            <h2 class="text-4xl font-bold mb-6 text-center">Choose a Topic to Learn</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="topic-card bg-white bg-opacity-90 p-6 rounded-xl shadow-xl cards" data-topic="math">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d3dec9b0-797b-4f42-b176-638230c5303c.png" alt="Illustrated math worksheet showing colorful numbers, equations like addition and multiplication with cartoon characters and geometric shapes" class="w-full h-32 object-cover rounded mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">[CALCULATOR] Mathematics</h3>
+                    <p class="text-gray-700 mb-4">Learn arithmetic, geometry, and more.</p>
+                    <button class="learn-now bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Learn Now</button>
+                </div>
+                <div class="topic-card bg-white bg-opacity-90 p-6 rounded-xl shadow-xl cards" data-topic="science">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/16e53817-da56-4e8c-a0c7-7c29e9fd02f4.png" alt="Photorealistic science lab setup with green plants, beakers, microscopes, and colorful liquid experiments on a wooden table" class="w-full h-32 object-cover rounded mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">[FLASK] Science</h3>
+                    <p class="text-gray-700 mb-4">Discover biology, chemistry, and physics.</p>
+                    <button class="learn-now bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Learn Now</button>
+                </div>
+                <div class="topic-card bg-white bg-opacity-90 p-6 rounded-xl shadow-xl cards" data-topic="history">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7439519e-d1a4-475e-ba97-c8550d3c064e.png" alt="Detailed ancient world map with pyramids, castles, and landmarks in blue tones, illustrated style for educational purposes" class="w-full h-32 object-cover rounded mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">[SCROLL] History</h3>
+                    <p class="text-gray-700 mb-4">Explore ancient civilizations and events.</p>
+                    <button class="learn-now bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Learn Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lesson Section (Dynamic) -->
+        <section id="lessons" class="section">
+            <h2 class="text-4xl font-bold mb-6 text-center" id="lesson-title">Lesson Title</h2>
+            <div id="lesson-content" class="bg-white bg-opacity-90 p-6 rounded-xl shadow-xl lesson-content">
+                <!-- Lesson content will be loaded here -->
+            </div>
+            <div class="text-center mt-6">
+                <button id="back-to-topics" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Back to Topics</button>
+                <button id="take-quiz" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 ml-4">Take Quiz</button>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="section">
+            <h2 class="text-4xl font-bold mb-6 text-center">Quiz Challenge!</h2>
+            <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-xl quiz-section">
+                <div id="quiz-question" class="text-xl text-gray-800 mb-4">Question goes here?</div>
+                <div id="quiz-options" class="space-y-2">
+                    <!-- Options will be loaded here -->
+                </div>
+                <div id="quiz-feedback" class="mt-4 p-4 bg-yellow-100 text-yellow-800 rounded hidden">[CHECK MARK] Correct! Well done explorer.</div>
+                <div class="text-center mt-6">
+                    <button id="next-question" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 hidden">Next Question</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section id="progress" class="section">
+            <h2 class="text-4xl font-bold mb-6 text-center">Your Progress Tracker</h2>
+            <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-xl">
+                <div id="badges" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Badges will be loaded here -->
+                </div>
+                <div id="stats" class="mt-6 text-gray-800">
+                    <p>Total Points: 0</p>
+                    <p>Lessons Completed: 0</p>
+                    <p>Badges Earned: 0</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gradient-to-r from-purple-600 to-blue-600 p-4 text-center">
+        <p>© 2023 Learning Hub. Keep learning and exploring!</p>
+    </footer>
+
+    <script>
+        // Data
+        const topics = {
+            math: {
+                title: "Math Adventures",
+                lessons: [
+                    { title: "Addition Fun", content: "Let's learn addition! 5 + 3 = 8. It's like collecting treasures! Every time you add, you're gaining more gems in your adventure." },
+                    { title: "Shapes Party", content: "Shapes are everywhere! Circles are like wheels, squares are like boxes. Can you spot shapes around you? They're part of our daily quests!" }
+                ]
+            },
+            science: {
+                title: "Science Explorations",
+                lessons: [
+                    { title: "Plant Power", content: "Plants need water and sun to grow. Like heroes needing energy for battles. Water and sun are their power-ups!" },
+                    { title: "Animal Friends", content: "Animals have unique homes. Birds fly high, fish swim deep. Each animal has its own adventure story." }
+                ]
+            },
+            history: {
+                title: "History Time Travel",
+                lessons: [
+                    { title: "Ancient Wonders", content: "The Pyramids were built long ago by smart builders. Imagine traveling back to see them rise!" },
+                    { title: "Explorer Tales", content: "Great explorers sailed oceans to find new lands. Columbus discovered America, starting new adventures." }
+                ]
+            }
+        };
+
+        const quizzes = {
+            math: [
+                { question: "What is 4 + 5?", options: ["9", "8", "7", "6"], answer: 0 },
+                { question: "A triangle has ___ sides.", options: ["3", "2", "4", "5"], answer: 0 }
+            ],
+            science: [
+                { question: "What do plants need to grow?", options: ["Water and Sun", "Rain only", "Darkness", "Snow"], answer: 0 },
+                { question: "Fish live in ___", options: ["Water", "Trees", "Sky", "Sand"], answer: 0 }
+            ],
+            history: [
+                { question: "The Pyramids are in ___", options: ["Egypt", "Mexico", "India", "Spain"], answer: 0 },
+                { question: "Columbus sailed in what year?", options: ["1492", "1000", "2000", "1800"], answer: 0 }
+            ]
+        };
+
+        let currentTopic = '';
+        let currentLesson = 0;
+        let quizIndex = 0;
+        let currentQuiz = '';
+        let score = 0;
+        let progress = JSON.parse(localStorage.getItem('progress')) || { math: 0, science: 0, history: 0, badges: [] };
+        let completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || 0;
+        let points = JSON.parse(localStorage.getItem('points')) || 0;
+
+        // Navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const section = btn.dataset.section;
+                showSection(section);
+            });
+        });
+
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
+            if (section === 'dashboard') updateDashboard();
+        }
+
+        function updateDashboard() {
+            Object.keys(progress).forEach(topic => {
+                if (topics[topic]) {
+                    const fill = document.querySelector(`.progress-fill[data-topic="${topic}"]`);
+                    if (fill) {
+                        const percent = (progress[topic] / topics[topic].lessons.length) * 100;
+                        fill.style.width = percent + '%';
+                        // Fix: update the correct percentage text element
+                        const percentText = fill.closest('.cards').querySelector('p.text-sm');
+                        if (percentText) {
+                            percentText.textContent = Math.round(percent) + '% complete';
+                        }
+                    }
+                }
+            });
+        }
+
+        // Topic Selection
+        document.querySelectorAll('.topic-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const topic = card.dataset.topic;
+                currentTopic = topic;
+                currentLesson = 0;
+                loadLesson();
+                showSection('lessons');
+            });
+        });
+
+        function loadLesson() {
+            if (currentLesson < topics[currentTopic].lessons.length) {
+                document.getElementById('lesson-title').textContent = topics[currentTopic].title + ' - ' + topics[currentTopic].lessons[currentLesson].title;
+                document.getElementById('lesson-content').innerHTML = `
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4ee9185c-01f9-4efd-8e67-28144b90dfb6.png" alt="Colorful cartoon illustration showing a child learning with books, light bulbs, and fun characters representing knowledge and curiosity" class="w-full h-48 object-cover rounded mb-4">
+                    <p class="text-lg text-gray-800">${topics[currentTopic].lessons[currentLesson].content}</p>
+                    <p class="mt-4 text-green-600 font-bold">[THUMBS UP] Great job reading this lesson! You're one step closer to your badge.</p>
+                `;
+            } else {
+                document.getElementById('lesson-content').innerHTML = '<p class="text-xl text-green-800">Congratulations! You\'ve completed all lessons in this topic.</p>';
+                document.getElementById('take-quiz').classList.add('hidden');
+            }
+        }
+
+        // Lesson Navigation
+        document.getElementById('back-to-topics').addEventListener('click', () => showSection('topics'));
+
+        document.getElementById('take-quiz').addEventListener('click', () => {
+            currentQuiz = currentTopic;
+            quizIndex = 0;
+            loadQuiz();
+            showSection('quiz');
+        });
+
+        // Quiz Functionality
+        function loadQuiz() {
+            const question = quizzes[currentQuiz][quizIndex];
+            document.getElementById('quiz-question').textContent = question.question;
+            const options = document.getElementById('quiz-options');
+            options.innerHTML = '';
+            question.options.forEach((opt, idx) => {
+                const optDiv = document.createElement('div');
+                optDiv.className = 'quiz-option p-3 border rounded cursor-pointer';
+                optDiv.textContent = opt;
+                optDiv.addEventListener('click', () => selectAnswer(idx, question.answer));
+                options.appendChild(optDiv);
+            });
+        }
+
+        function selectAnswer(selected, correct) {
+            document.querySelectorAll('.quiz-option').forEach((opt, idx) => {
+                opt.style.pointerEvents = 'none';
+                if (idx === correct) opt.classList.add('bg-green-200', 'text-green-800');
+                else if (idx === selected && selected !== correct) opt.classList.add('bg-red-200', 'text-red-800');
+            });
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.remove('hidden');
+            if (selected === correct) {
+                score++;
+                points += 10;
+                feedback.textContent = '[TROPHY] Correct! You earned 10 points.';
+                feedback.classList.add('bg-green-100', 'text-green-800');
+            } else {
+                feedback.textContent = "[TRY AGAIN] Oops, that's not right. The correct answer is: " + quizzes[currentQuiz][quizIndex].options[correct];
+                feedback.classList.add('bg-red-100', 'text-red-800');
+            }
+            document.getElementById('next-question').classList.remove('hidden');
+        }
+
+        document.getElementById('next-question').addEventListener('click', () => {
+            quizIndex++;
+            if (quizIndex < quizzes[currentQuiz].length) {
+                loadQuiz();
+                document.getElementById('quiz-feedback').classList.add('hidden');
+                document.getElementById('next-question').classList.add('hidden');
+            } else {
+                // Quiz complete
+                progress[currentTopic] = Math.max(progress[currentTopic], topics[currentTopic].lessons.length); // Mark complete
+                completedLessons++;
+                if (points >= 20) {
+                    const badge = currentTopic + 'Master';
+                    if (!progress.badges.includes(badge)) progress.badges.push(badge);
+                }
+                saveProgress();
+                updateDashboard();
+                document.getElementById('quiz-question').textContent = `Quiz Complete! Score: ${score}/${quizzes[currentQuiz].length}`;
+                document.getElementById('quiz-options').innerHTML = '';
+                document.getElementById('quiz-feedback').classList.add('hidden');
+                document.getElementById('next-question').classList.add('hidden');
+                document.getElementById('take-quiz').classList.remove('hidden');
+                currentLesson++;
+                if (currentLesson >= topics[currentTopic].lessons.length) {
+                    document.getElementById('lesson-content').innerHTML += '<p class="mt-4 text-blue-600 font-bold">[BADGE] You\'ve earned the ' + currentTopic + ' Master badge!</p>';
+                }
+            }
+        });
+
+        function saveProgress() {
+            localStorage.setItem('progress', JSON.stringify(progress));
+            localStorage.setItem('completedLessons', completedLessons);
+            localStorage.setItem('points', points);
+        }
+
+        // Progress
+        function loadProgress() {
+            document.getElementById('stats').innerHTML = `
+                <p>Total Points: ${points}</p>
+                <p>Lessons Completed: ${completedLessons}</p>
+                <p>Badges Earned: ${progress.badges.length}</p>
+            `;
+            const badgeDiv = document.getElementById('badges');
+            badgeDiv.innerHTML = progress.badges.map(badge => `<div class="bg-yellow-200 p-4 rounded shadow"><h4 class="font-bold">${badge}</h4><p>Congratulations!</p></div>`).join('');
+        }
+
+        // Init
+        document.getElementById('start-adventure').addEventListener('click', () => showSection('topics'));
+        updateDashboard();
+        loadProgress();
+    </script>
+</body>
+</html>
+</content>
+</create_file>

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E‑Shop — Demo Frontend</title>
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --accent:#ff6b6b;
+      --muted:#6b7280;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 8px 24px rgba(18,25,40,0.06);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#ffffff);color:#0f172a}
+    a{color:inherit;text-decoration:none}
+
+    /* NAV */
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:transparent;position:sticky;top:0;backdrop-filter:blur(6px);z-index:50}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ffb88c);box-shadow:var(--shadow);display:grid;place-items:center;color:white;font-weight:700}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .btn{padding:10px 14px;border-radius:10px;background:var(--accent);color:#fff;font-weight:600;border:0;cursor:pointer}
+    .ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px 12px;border-radius:8px}
+
+    /* Header/Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center;padding:48px 6vw}
+    .hero-left h1{font-size:36px;margin:0 0 12px;line-height:1.05}
+    .hero-left p{color:var(--muted);margin:0 0 18px}
+    .search{display:flex;gap:12px;background:var(--card);padding:10px;border-radius:12px;box-shadow:var(--shadow);align-items:center}
+    .search input{border:0;outline:0;font-size:14px;padding:8px}
+    .hero-right{display:grid;gap:12px}
+    .featured{background:linear-gradient(135deg,#fff 0,#fff 100%);padding:10px;border-radius:12px;box-shadow:var(--shadow);display:flex;gap:10px;align-items:center}
+    .featured img{width:110px;height:110px;object-fit:cover;border-radius:10px}
+
+    /* Sections */
+    .container{padding:36px 6vw}
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+    .price-row{display:flex;justify-content:space-between;align-items:center}
+    .price{font-weight:700}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* About */
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+    .about .card{padding:24px}
+
+    /* Contact */
+    .contact-form{display:grid;gap:12px}
+    .contact-form input,.contact-form textarea{padding:12px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);outline:0;font-size:14px}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    /* Footer */
+    footer{padding:28px 6vw;background:linear-gradient(180deg,#f8fafc,#fff);margin-top:36px;border-top:1px solid rgba(15,23,42,0.04)}
+    .footer-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .about{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .mobile-nav{display:flex}
+    }
+
+    /* small helpers */
+    .chip{padding:6px 10px;border-radius:999px;background:#fff;font-weight:600;font-size:13px}
+    .muted-sm{color:var(--muted);font-size:12px}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">
+      <div class="logo">ES</div>
+      <div>
+        <div style="font-weight:700">E‑Shop Demo</div>
+        <div class="muted-sm">Frontend sample for clients</div>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <button class="btn">Shop Now</button>
+    </nav>
+
+    <div class="mobile-nav" style="display:none">
+      <button class="ghost" id="menuBtn">Menu</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Quality products, honest prices.</h1>
+        <p>Beautifully crafted demo storefront to show clients how their site could look — responsive, clean, and conversion-ready.</p>
+
+        <div class="search" style="max-width:640px">
+          <input id="searchInput" placeholder="Search products, e.g. cotton tote" />
+          <button class="btn" onclick="applySearch()">Search</button>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <div class="chip">Free shipping</div>
+          <div class="chip">14-day returns</div>
+          <div class="chip">24/7 support</div>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="featured">
+          <img src="https://bluehillpetals.com/cdn/shop/files/Just_a_Girl_Who_Loves_Fall_Tote1.jpg?v=1749598540" alt="featured"/>
+          <div>
+            <div style="font-weight:700">Autumn Canvas Tote</div>
+            <div class="muted-sm">Best seller • 4.8 (1.2k)</div>
+            <div style="margin-top:8px;font-weight:700;color:var(--accent)">₹749</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:10px">
+          <div style="flex:1;background:linear-gradient(180deg,#fff,#fff);border-radius:12px;padding:10px;box-shadow:var(--shadow)">
+            <div class="muted-sm">New arrivals</div>
+            <div style="font-weight:700;margin-top:6px">Handmade pouches</div>
+          </div>
+          <div style="width:120px;background:linear-gradient(180deg,#fff,#fff);border-radius:12px;padding:10px;box-shadow:var(--shadow);display:grid;place-items:center">
+            <div class="muted-sm">Hot</div>
+            <div style="font-weight:700">30% Off</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="products" class="container">
+      <div class="section-title">
+        <h2>Popular Products</h2>
+        <div class="muted-sm">Showing sample items to clients — replace with real catalog</div>
+      </div>
+
+      <div class="grid" id="productGrid">
+        <!-- product cards inserted by JS -->
+      </div>
+
+    </section>
+
+    <section id="about" class="container">
+      <div class="section-title"><h2>About Us</h2><div class="muted-sm">A short story the client can edit</div></div>
+      <div class="about">
+        <div class="card">
+          <h3>Who we are</h3>
+          <p class="muted">We are a small team passionate about sustainable materials and thoughtful design. This demo shows how your brand story, product grid and calls-to-action can be structured to drive trust and conversions.</p>
+          <ul class="muted-sm">
+            <li>Curated collections</li>
+            <li>Transparent pricing</li>
+            <li>Ethical manufacturing</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Our mission</h3>
+          <p class="muted">Turn great ideas into beautiful everyday products. The layout here is intentionally minimal so your photography and brand voice can shine.</p>
+          <div style="margin-top:12px"><button class="btn">View Catalog</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <div class="section-title"><h2>Contact</h2><div class="muted-sm">Get in touch — non-functional demo form</div></div>
+
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start">
+        <form class="card contact-form" onsubmit="event.preventDefault();alert('This is a demo form — integrate backend to make it work')">
+          <input placeholder="Full name" required />
+          <input placeholder="Email" type="email" required />
+          <input placeholder="Subject" />
+          <textarea rows="5" placeholder="Message"></textarea>
+          <div style="display:flex;justify-content:flex-end"><button class="btn">Send message</button></div>
+        </form>
+
+        <aside class="card">
+          <h4>Visit / Call</h4>
+          <div class="muted-sm">123 Demo Street, City, Country</div>
+          <div style="margin-top:12px">Phone: +91 98765 43210</div>
+          <div style="margin-top:8px">Email: hello@example.com</div>
+          <div style="margin-top:12px" class="muted-sm">Hours: Mon–Sat, 10:00–19:00</div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div style="font-weight:700">E‑Shop Demo</div>
+        <div class="muted-sm">Simple frontend demo to present to clients.</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="muted-sm">Made with ❤️</div>
+        <div class="muted-sm">Privacy</div>
+        <div class="muted-sm">Terms</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      {id:1,name:'Canvas Tote - Natural',price:749,desc:'Durable cotton tote, 14L',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c42d6c6b1ad6b1b'},
+      {id:2,name:'Handmade Zipper Pouch',price:349,desc:'Perfect for small items',img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2c6f8b0d4b3b5d9c'},
+      {id:3,name:'Leather Wallet (Vegan)',price:1299,desc:'Slim card holder',img:'https://img.freepik.com/free-vector/purse_1284-658.jpg'},
+      {id:4,name:'Organic Cotton Shirt',price:899,desc:'Comfort fit tee',img:'https://cdn.vibecity.in/providers/650049a2bdf08b00110aafd7/26c863a1-143b-47cd-b1dc-ef5ab73a356e_d11396fe-7bd7-4c2b-a066-e1879af944a1-3X.png'},
+      {id:5,name:'Minimal Desk Mat',price:599,desc:'Works well with laptops',img:'https://m.media-amazon.com/images/I/91D-Wk4QckL.jpg'},
+      {id:6,name:'Insulated Water Bottle',price:1299,desc:'Keeps drinks cold for 24h',img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQijez4uhZ_iHSPonHRvljDNQOfvOuA_xoldA&s'}
+    ];
+
+    const grid = document.getElementById('productGrid');
+    function render(productsList){
+      grid.innerHTML = productsList.map(p => `
+        <article class="card">
+          <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0.85"/>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-weight:700">${p.name}</div>
+            <div class="muted-sm">SKU: ${p.id}</div>
+          </div>
+          <div class="muted">${p.desc}</div>
+          <div class="price-row">
+            <div class="price">₹${p.price}</div>
+            <div style="display:flex;gap:8px">
+              <button class="ghost" onclick="viewProduct(${p.id})">Quick view</button>
+              <button class="btn" onclick="addCart(${p.id})">Add</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function viewProduct(id){
+      const p = products.find(x=>x.id===id);
+      alert(p.name + '\n\n' + p.desc + '\nPrice: ₹' + p.price + '\n\nThis is a quick demo. Replace alert with a modal for production.');
+    }
+    function addCart(id){
+      const p = products.find(x=>x.id===id);
+      alert('Added «'+p.name+'» to cart — demo only.');
+    }
+
+    function applySearch(){
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      if(!q){render(products);return}
+      const filtered = products.filter(p => (p.name+ ' ' + p.desc).toLowerCase().includes(q));
+      render(filtered);
+    }
+
+    // init
+    render(products);
+
+    // mobile menu simple
+    const menuBtn = document.getElementById('menuBtn');
+    if(menuBtn) menuBtn.addEventListener('click', ()=>{
+      alert('This demo includes nav links. For a prototype, wire them to anchors or mobile drawer.');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Blog</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f9fafb; color: #333; line-height: 1.6; }
+
+    /* Navbar */
+    header { background: #0f172a; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; }
+    nav { display: flex; justify-content: center; gap: 25px; }
+    nav a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+    nav a:hover { color: #60a5fa; }
+
+    /* Hero */
+    .hero { padding: 60px 20px; text-align: center; background: linear-gradient(135deg, #2563eb, #3b82f6); color: white; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+    .hero p { font-size: 1.2rem; }
+
+    /* Blog List */
+    .blog-list { max-width: 1000px; margin: 40px auto; display: grid; gap: 20px; padding: 0 20px; }
+    .post-card { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 20px; transition: transform 0.3s; cursor: pointer; }
+    .post-card:hover { transform: translateY(-5px); }
+    .post-card h2 { margin-bottom: 10px; }
+    .post-card p { color: #555; }
+
+    /* Single Post */
+    .single-post { display: none; max-width: 800px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .single-post h2 { margin-bottom: 15px; }
+    .single-post p { margin-bottom: 15px; }
+    .back-btn { display: inline-block; margin-top: 10px; background: #2563eb; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; }
+
+    /* About */
+    #about { padding: 60px 20px; background: #f3f4f6; text-align: center; }
+    #about h2 { margin-bottom: 15px; }
+
+    /* Contact */
+    #contact { padding: 60px 20px; text-align: center; }
+    form { display: grid; gap: 15px; max-width: 400px; margin: auto; }
+    input, textarea, button { padding: 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 1rem; }
+    button { background: #2563eb; color: white; border: none; cursor: pointer; transition: background 0.3s; }
+    button:hover { background: #1d4ed8; }
+
+    /* Footer */
+    footer { background: #0f172a; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <h1>Welcome to My Blog</h1>
+    <p>Sharing ideas, stories, and knowledge with the world.</p>
+  </section>
+
+  <!-- Blog List -->
+  <section class="blog-list" id="blog-list">
+    <div class="post-card" onclick="openPost(1)">
+      <h2>🚀 How to Start Your Own Business</h2>
+      <p>Learn the key steps to launch a successful business in today’s market...</p>
+    </div>
+    <div class="post-card" onclick="openPost(2)">
+      <h2>💻 Top 10 Coding Practices</h2>
+      <p>Improve your development skills with these essential best practices...</p>
+    </div>
+    <div class="post-card" onclick="openPost(3)">
+      <h2>🌍 The Future of Remote Work</h2>
+      <p>Discover how remote work is shaping the modern workforce...</p>
+    </div>
+  </section>
+
+  <!-- Single Post -->
+  <section class="single-post" id="post1">
+    <h2>🚀 How to Start Your Own Business</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae consequat nulla. Quisque ut purus eros. Suspendisse a diam nisi...</p>
+    <a href="#" class="back-btn" onclick="goBack(event)">← Back to Blog</a>
+  </section>
+
+  <section class="single-post" id="post2">
+    <h2>💻 Top 10 Coding Practices</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sapien vel dui efficitur pretium. Pellentesque habitant morbi tristique...</p>
+    <a href="#" class="back-btn" onclick="goBack(event)">← Back to Blog</a>
+  </section>
+
+  <section class="single-post" id="post3">
+    <h2>🌍 The Future of Remote Work</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, justo ut tristique pretium, metus orci euismod velit, eget...</p>
+    <a href="#" class="back-btn" onclick="goBack(event)">← Back to Blog</a>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hi! I’m a blogger passionate about technology, business, and creative writing. I share articles and insights that inspire and inform readers worldwide.</p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 My Blog. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    function openPost(id) {
+      document.getElementById('blog-list').style.display = 'none';
+      document.querySelectorAll('.single-post').forEach(p => p.style.display = 'none');
+      document.getElementById('post' + id).style.display = 'block';
+    }
+    function goBack(e) {
+      e.preventDefault();
+      document.querySelectorAll('.single-post').forEach(p => p.style.display = 'none');
+      document.getElementById('blog-list').style.display = 'grid';
+    }
+  </script>
+</body>
+</html>

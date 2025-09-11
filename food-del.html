@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie Express - Food Delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #f8f9fa; }
+        .card:hover { transform: translateY(-5px); transition: transform 0.2s; }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 1000; }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800">Foodie Express</h1>
+            <nav class="flex space-x-4">
+                <button class="nav-btn text-gray-700 hover:text-blue-600" data-page="home">Home</button>
+                <button class="nav-btn text-gray-700 hover:text-blue-600" data-page="restaurants">Restaurants</button>
+                <button class="nav-btn text-gray-700 hover:text-blue-600" data-page="cart">Cart (<span id="cart-count">0</span>)</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4">
+        <!-- Home Page -->
+        <section id="home" class="page active fade-in">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Delicious Food, Delivered Fast</h2>
+                <div class="flex justify-center mb-6">
+                    <input type="text" id="search-input" placeholder="Search for restaurants or food..." class="w-full max-w-md p-2 border rounded-l focus:outline-none">
+                    <button id="search-btn" class="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600">Search</button>
+                </div>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Featured Restaurants</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="featured-restaurants">
+                <!-- Featured restaurants loaded here -->
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 mt-8 text-gray-800">Popular Categories</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="categories">
+                <!-- Categories loaded here -->
+            </div>
+        </section>
+
+        <!-- Restaurants Page -->
+        <section id="restaurants" class="page">
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">All Restaurants</h2>
+            <div class="flex space-x-4 mb-4">
+                <button class="category-filter bg-gray-200 px-3 py-1 rounded" data-category="all">All</button>
+                <button class="category-filter bg-gray-200 px-3 py-1 rounded" data-category="italian">Italian</button>
+                <button class="category-filter bg-gray-200 px-3 py-1 rounded" data-category="chinese">Chinese</button>
+                <button class="category-filter bg-gray-200 px-3 py-1 rounded" data-category="indian">Indian</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="restaurant-list">
+                <!-- Restaurants loaded here -->
+            </div>
+        </section>
+
+        <!-- Restaurant Menu Page -->
+        <section id="restaurant-menu" class="page">
+            <div class="flex items-center mb-4">
+                <button id="back-to-restaurants" class="bg-gray-500 text-white px-3 py-1 rounded mr-4 hover:bg-gray-600">← Back</button>
+                <h2 id="restaurant-title" class="text-3xl font-bold text-gray-800">Restaurant Menu</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <img id="restaurant-image" src="" alt="" class="w-full h-48 object-cover rounded">
+                    <p id="restaurant-description" class="mt-2 text-gray-700"></p>
+                </div>
+                <div id="menu-items">
+                    <!-- Menu items loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Page -->
+        <section id="cart" class="page">
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">Your Cart</h2>
+            <div id="cart-items" class="bg-white p-4 rounded shadow-md">
+                <!-- Cart items loaded here -->
+            </div>
+            <div class="mt-4 flex justify-between items-center">
+                <p class="text-xl font-bold">Total: $<span id="total-price">0.00</span></p>
+                <button id="checkout-btn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Checkout</button>
+            </div>
+        </section>
+
+        <!-- Checkout Modal -->
+        <div id="checkout-modal" class="modal">
+            <div class="bg-white p-6 rounded-lg w-full max-w-md">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Checkout</h2>
+                <form id="checkout-form">
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Name</label>
+                        <input type="text" id="customer-name" class="w-full p-2 border rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Address</label>
+                        <input type="text" id="delivery-address" class="w-full p-2 border rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Phone</label>
+                        <input type="tel" id="phone-number" class="w-full p-2 border rounded" required>
+                    </div>
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" id="cancel-checkout" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancel</button>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Place Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sample data
+        const restaurants = [
+            { id: 1, name: 'Pizza Palace', category: 'italian', rating: 4.5, deliveryTime: '25-30', image: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bf8fb3e5-5abc-42ab-a2dd-6b4f2f4f7f1d.png', description: 'Authentic Italian pizzas made fresh daily.' },
+            { id: 2, name: 'Noodle House', category: 'chinese', rating: 4.2, deliveryTime: '20-25', image: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/51e6f28c-70c6-4e59-898a-b5a1df523141.png', description: 'Delicious Chinese noodle dishes and stir-fries.' },
+            { id: 3, name: 'Taste of India', category: 'indian', rating: 4.8, deliveryTime: '30-35', image: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/47154faf-befe-4d63-8d9e-f113135f7ae0.png', description: 'Authentic Indian curries and flavorful rice dishes.' },
+            { id: 4, name: 'Burger Junction', category: 'american', rating: 4.3, deliveryTime: '15-20', image: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/74c65b91-33c4-4b03-93e3-43b79b9859cb.png', description: 'Juicy burgers and crispy fries served hot.' }
+        ];
+
+        const menus = {
+            1: [
+                { id: 1, name: 'Margherita Pizza', price: 12.99, description: 'Fresh tomato, mozzarella, basil.' },
+                { id: 2, name: 'Pepperoni Pizza', price: 14.99, description: 'Pepperoni, mozzarella, tomato sauce.' },
+                { id: 3, name: 'Garlic Bread', price: 5.99, description: 'Buttery garlic bread with herbs.' }
+            ],
+            2: [
+                { id: 4, name: 'Beef Noodles', price: 10.99, description: 'Wok-tossed beef with noodles and vegetables.' },
+                { id: 5, name: 'Vegetable Fried Rice', price: 9.99, description: 'Fried rice with mixed vegetables and egg.' },
+                { id: 6, name: 'Spring Rolls', price: 6.99, description: 'Crispy spring rolls filled with vegetables.' }
+            ],
+            3: [
+                { id: 7, name: 'Chicken Tikka Masala', price: 13.99, description: 'Creamy curry with tender chicken and spices.' },
+                { id: 8, name: 'Vegetable Biryani', price: 11.99, description: 'Fragrant rice with mixed vegetables and nuts.' },
+                { id: 9, name: 'Garlic Naan', price: 3.99, description: 'Soft, buttery Indian bread with garlic.' }
+            ],
+            4: [
+                { id: 10, name: 'Classic Burger', price: 9.99, description: 'Beef patty, lettuce, tomato, cheese.' },
+                { id: 11, name: 'Cheese Fries', price: 4.99, description: 'Golden fries topped with melted cheese.' },
+                { id: 12, name: 'Chicken Nuggets', price: 7.99, description: 'Crispy breaded chicken nuggets.' }
+            ]
+        };
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let currentRestaurant = null;
+
+        // Page navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const page = this.dataset.page;
+                showPage(page);
+            });
+        });
+
+        function showPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(page).classList.add('active');
+        }
+
+        // Load home page
+        function loadHome() {
+            const featured = restaurants.slice(0, 3);
+            const featuredDiv = document.getElementById('featured-restaurants');
+            featuredDiv.innerHTML = '';
+            featured.forEach(restaurant => {
+                featuredDiv.innerHTML += `
+                    <div class="card bg-white p-4 rounded shadow-md restaurant-card" data-id="${restaurant.id}">
+                        <img src="${restaurant.image}" alt="${restaurant.name} restaurant exterior with welcoming entrance and signage" class="w-full h-32 object-cover rounded mb-2">
+                        <h3 class="text-lg font-bold text-gray-800">${restaurant.name}</h3>
+                        <p class="text-gray-600">${restaurant.category.charAt(0).toUpperCase() + restaurant.category.slice(1)}</p>
+                        <p class="text-green-600">⭐ ${restaurant.rating} • ${restaurant.deliveryTime} min</p>
+                    </div>
+                `;
+            });
+
+            const categoriesDiv = document.getElementById('categories');
+            categoriesDiv.innerHTML = `
+                <div class="category-card bg-blue-100 p-4 rounded text-center">
+                    <h4 class="font-bold text-blue-800">Italian</h4>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/815a5201-0921-4527-8ada-52f43d9208fb.png" alt="Fresh pizza margherita with melted mozzarella cheese, sliced tomatoes, and basil leaves on wooden base" class="w-full h-16 object-cover rounded mt-2">
+                </div>
+                <div class="category-card bg-red-100 p-4 rounded text-center">
+                    <h4 class="font-bold text-red-800">Chinese</h4>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d2d48ce0-ec5c-4c8f-8a9a-b027ea91a093.png" alt="Sizzling wok with stir-fried noodles, colorful vegetables, and aromatic steam rising in traditional Chinese kitchen" class="w-full h-16 object-cover rounded mt-2">
+                </div>
+                <div class="category-card bg-yellow-100 p-4 rounded text-center">
+                    <h4 class="font-bold text-yellow-800">Indian</h4>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/07ee2d4b-cf1b-4590-a7f4-21e4526cb5d4.png" alt="Rich butter chicken curry with naan bread in copper bowl, garnished with cilantro and spices" class="w-full h-16 object-cover rounded mt-2">
+                </div>
+                <div class="category-card bg-green-100 p-4 rounded text-center">
+                    <h4 class="font-bold text-green-800">American</h4>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6e3c8d73-7ae4-40fb-9e53-ab9cbad3bf32.png" alt="Gourmet beef burger with lettuce, tomato, cheese, and golden fries on red and yellow checkered paper" class="w-full h-16 object-cover rounded mt-2">
+                </div>
+            `;
+        }
+
+        // Load restaurants
+        function loadRestaurants(filter = 'all') {
+            const list = document.getElementById('restaurant-list');
+            list.innerHTML = '';
+            const filtered = filter === 'all' ? restaurants : restaurants.filter(r => r.category === filter);
+            filtered.forEach(restaurant => {
+                list.innerHTML += `
+                    <div class="card bg-white p-4 rounded shadow-md restaurant-card" data-id="${restaurant.id}">
+                        <img src="${restaurant.image}" alt="${restaurant.name} exterior with welcoming design and outdoor seating" class="w-full h-32 object-cover rounded mb-2">
+                        <h3 class="text-lg font-bold text-gray-800">${restaurant.name}</h3>
+                        <p class="text-gray-600">${restaurant.category.charAt(0).toUpperCase() + restaurant.category.slice(1)}</p>
+                        <p class="text-green-600">⭐ ${restaurant.rating} • ${restaurant.deliveryTime} min</p>
+                    </div>
+                `;
+            });
+        }
+
+        // Restaurant card click
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.restaurant-card')) {
+                const restaurantId = e.target.closest('.restaurant-card').dataset.id;
+                currentRestaurant = restaurants.find(r => r.id == restaurantId);
+                loadRestaurantMenu(restaurantId);
+                showPage('restaurant-menu');
+            }
+        });
+
+        // Load restaurant menu
+        function loadRestaurantMenu(id) {
+            const restaurant = currentRestaurant;
+            document.getElementById('restaurant-title').textContent = restaurant.name;
+            document.getElementById('restaurant-image').src = restaurant.image;
+            document.getElementById('restaurant-image').alt = `${restaurant.name} interior showcasing cozy dining area with customers`;
+            document.getElementById('restaurant-description').textContent = restaurant.description;
+
+            const menuItems = menus[id];
+            const menuDiv = document.getElementById('menu-items');
+            menuDiv.innerHTML = '';
+            menuItems.forEach(item => {
+                menuDiv.innerHTML += `
+                    <div class="bg-gray-50 p-3 rounded mb-2">
+                        <h4 class="font-bold text-gray-800">${item.name}</h4>
+                        <p class="text-gray-600">${item.description}</p>
+                        <p class="text-green-600 font-bold">$${item.price}</p>
+                        <button class="add-to-cart bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-600 mt-1" data-id="${item.id}>Add to Cart</button>
+                    </div>
+                `;
+            });
+        }
+
+        // Add to cart
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('add-to-cart')) {
+                const itemId = e.target.dataset.id;
+                const item = Object.values(menus).flat().find(i => i.id == itemId);
+                const cartItem = cart.find(ci => ci.id == itemId);
+                if (cartItem) {
+                    cartItem.quantity++;
+                } else {
+                    cart.push({...item, quantity: 1, restaurant: currentRestaurant.name});
+                }
+                updateCart();
+            }
+        });
+
+        // Update cart
+        function updateCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            document.getElementById('cart-count').textContent = cart.length;
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            document.getElementById('total-price').textContent = total.toFixed(2);
+
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty.</p>';
+                return;
+            }
+            cart.forEach((item, index) => {
+                cartItems.innerHTML += `
+                    <div class="flex justify-between items-center mb-2">
+                        <span>${item.name} (${item.restaurant}) x${item.quantity}</span>
+                        <span>$${ (item.price * item.quantity).toFixed(2) }</span>
+                        <button class="remove-item bg-red-500 text-white px-2 py-1 rounded" data-index="${index}">Remove</button>
+                    </div>
+                `;
+            });
+        }
+
+        // Remove from cart
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-item')) {
+                const index = e.target.dataset.index;
+                cart.splice(index, 1);
+                updateCart();
+            }
+        });
+
+        // Search
+        document.getElementById('search-btn').addEventListener('click', function() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = restaurants.filter(r => r.name.toLowerCase().includes(query));
+            loadRestaurantsFiltered(filtered);
+        });
+
+        function loadRestaurantsFiltered(filtered) {
+            // Similar to loadRestaurants but with custom list
+        }
+
+        // Category filter
+        document.querySelectorAll('.category-filter').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.dataset.category;
+                document.querySelectorAll('.category-filter').forEach(b => b.classList.remove('bg-blue-500', 'text-white'));
+                this.classList.add('bg-blue-500', 'text-white');
+                loadRestaurants(category);
+            });
+        });
+
+        // Back to restaurants
+        document.getElementById('back-to-restaurants').addEventListener('click', () => showPage('restaurants'));
+
+        // Checkout
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            document.getElementById('checkout-modal').classList.add('active');
+        });
+
+        document.getElementById('cancel-checkout').addEventListener('click', function() {
+            document.getElementById('checkout-modal').classList.remove('active');
+        });
+
+        document.getElementById('checkout-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Order placed successfully! Your food will be delivered soon.');
+            cart = [];
+            updateCart();
+            document.getElementById('checkout-modal').classList.remove('active');
+            showPage('home');
+        });
+
+        // Initialize
+        loadHome();
+        loadRestaurants();
+        updateCart();
+    </script>
+</body>
+</html>
+</content>
+</create_file>

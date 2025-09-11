@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Creative Portfolio — Demo</title>
+  <meta name="description" content="Stunning portfolio showcase with interactive animations, projects gallery, experience, skills and contact (frontend only)." />
+  <style>
+    :root{
+      --bg:#0f172a;
+      --card:#0b1220;
+      --accent:#7c5cff;
+      --accent-2:#2dd4bf;
+      --muted:#9aa4b2;
+      --glass:rgba(255,255,255,0.03);
+      --radius:14px;
+      --glass-2:rgba(255,255,255,0.02);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#071021);color:#e6eef8;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+
+    /* Layout */
+    header{position:fixed;left:0;right:0;top:12px;display:flex;justify-content:space-between;align-items:center;padding:12px 6vw;z-index:60}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo-stamp{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;box-shadow:0 12px 40px rgba(124,92,255,0.15)}
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600}
+    nav a.active{background:linear-gradient(90deg,rgba(124,92,255,0.12),rgba(45,212,191,0.08));color:var(--accent)}
+    .cta{padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#b389ff);font-weight:700;border:0;cursor:pointer}
+
+    main{padding-top:110px}
+    .section{padding:72px 6vw}
+    .container{max-width:1100px;margin:0 auto}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center}
+    .hero h1{font-size:40px;line-height:1.02;margin:0}
+    .hero p{color:var(--muted);margin-top:12px;font-size:15px}
+    .hero .actions{margin-top:18px;display:flex;gap:12px}
+
+    /* DEV STICKER */
+    .sticker{width:420px;height:420px;border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);display:grid;place-items:center;box-shadow:0 30px 70px rgba(2,6,23,0.6);position:relative;overflow:hidden}
+    .sticker .emoji{font-size:88px}
+    .sticker .badge{position:absolute;left:18px;top:18px;background:rgba(255,255,255,0.04);padding:8px 12px;border-radius:999px;font-weight:700;font-size:13px}
+    .sticker .pixel{position:absolute;right:18px;bottom:18px;background:linear-gradient(45deg,var(--accent),var(--accent-2));padding:10px;border-radius:12px;font-weight:800}
+
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+    .proj{background:var(--card);border-radius:12px;overflow:hidden;position:relative;cursor:pointer;transform:translateY(0);transition:transform .35s ease,box-shadow .35s}
+    .proj:hover{transform:translateY(-10px);box-shadow:0 30px 60px rgba(2,6,23,0.6)}
+    .proj img{width:100%;height:170px;object-fit:cover;display:block}
+    .proj .meta{padding:12px}
+    .proj .meta h4{margin:0 0 6px}
+    .proj .meta p{margin:0;color:var(--muted);font-size:13px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,rgba(2,6,23,0.6),rgba(2,6,23,0.85));visibility:hidden;opacity:0;transition:opacity .25s,visibility .25s;z-index:80}
+    .modal.open{visibility:visible;opacity:1}
+    .modal .sheet{width:min(920px,96%);background:#06111a;padding:18px;border-radius:12px}
+    .modal img{width:100%;height:420px;object-fit:cover;border-radius:8px}
+
+    /* Experience timeline */
+    .timeline{display:flex;flex-direction:column;gap:20px}
+    .timeline .item{display:flex;gap:14px;align-items:flex-start}
+    .timeline .dot{width:12px;height:12px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));margin-top:6px}
+    .timeline .card{background:var(--card);padding:14px;border-radius:12px;flex:1}
+    .timeline .muted{color:var(--muted)}
+
+    /* Skills */
+    .skills{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .skill{background:var(--card);padding:14px;border-radius:12px}
+    .skill h5{margin:0 0 10px}
+    .bar{height:12px;background:var(--glass);border-radius:999px;overflow:hidden}
+    .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%;transition:width 1.2s cubic-bezier(.2,.9,.2,1)}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    .contact-form input,.contact-form textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+
+    /* Footer */
+    footer{padding:40px 6vw;color:var(--muted)}
+
+    /* small screens */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .sticker{width:100%;height:320px}
+      .skills{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      header{padding:12px 4vw}
+    }
+
+    /* reveal animations */
+    .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo-stamp">CP</div>
+      <div style="line-height:1">
+        <div style="font-weight:800">Creative Portfolio</div>
+        <div style="font-size:12px;color:var(--muted)">Design · Frontend · Motion</div>
+      </div>
+    </div>
+
+    <nav id="topNav">
+      <a href="#home" class="active">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <button class="cta" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="section">
+      <div class="container hero">
+        <div>
+          <h1 class="reveal">Hi — I'm <span style="color:var(--accent)">Psycho</span>, a creative front-end designer</h1>
+          <p class="reveal">I build visually rich web experiences, animations and brand-first interfaces. This is a frontend-only demo — replace text and projects with your work to present to clients.</p>
+          <div class="actions reveal">
+            <button class="cta" onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})">See Projects</button>
+            <a href="#contact" class="ghost" style="padding:9px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);">Download CV</a>
+          </div>
+
+          <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+            <div class="chip">React</div>
+            <div class="chip">Animation</div>
+            <div class="chip">UI/UX</div>
+          </div>
+        </div>
+
+        <div class="sticker reveal" aria-hidden="true">
+          <div class="badge">Dev Sticker</div>
+          <div class="emoji">👾</div>
+          <div class="pixel">✦</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-title" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+          <h2>Selected Projects</h2>
+          <div style="color:var(--muted);font-size:14px">Interactive case studies & prototypes</div>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+          <!-- project cards inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <h2>Experience</h2>
+        <div class="timeline" id="timeline">
+          <div class="item reveal">
+            <div class="dot"></div>
+            <div class="card">
+              <div style="display:flex;justify-content:space-between;align-items:center"><strong>Lead Frontend Designer</strong><span class="muted">2023 — Present</span></div>
+              <p class="muted">Worked on high-fidelity animations, component design systems and performance tuning for product teams.</p>
+            </div>
+          </div>
+
+          <div class="item reveal">
+            <div class="dot"></div>
+            <div class="card">
+              <div style="display:flex;justify-content:space-between;align-items:center"><strong>UI Motion Artist — Freelance</strong><span class="muted">2021 — 2023</span></div>
+              <p class="muted">Produced micro-interactions and landing page concepts for startups and agencies.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div class="skill reveal">
+            <h5>Frontend Development</h5>
+            <div class="bar"><i style="width:92%"></i></div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">React, Vanilla JS, Accessibility</div>
+          </div>
+
+          <div class="skill reveal">
+            <h5>Visual Design & Motion</h5>
+            <div class="bar"><i style="width:86%"></i></div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">Figma, After Effects, CSS Animations</div>
+          </div>
+
+          <div class="skill reveal">
+            <h5>Performance & SEO</h5>
+            <div class="bar"><i style="width:78%"></i></div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">Optimizations, Lighthouse, Best practices</div>
+          </div>
+
+          <div class="skill reveal">
+            <h5>Branding</h5>
+            <div class="bar"><i style="width:82%"></i></div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">Identity, Typography, Illustration</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap">
+          <div style="flex:1;min-width:320px">
+            <h2>Contact</h2>
+            <p class="muted">Available for freelance and full-time roles. Fill the form and I'll reply within a few days (demo form).</p>
+
+            <div class="contact-grid">
+              <form class="card contact-form" onsubmit="event.preventDefault();alert('Demo form — connect backend to receive messages')">
+                <input placeholder="Full name" required />
+                <input placeholder="Email" type="email" required />
+                <input placeholder="Subject" />
+                <textarea rows="5" placeholder="Brief message"></textarea>
+                <div style="display:flex;justify-content:flex-end"><button class="cta">Send</button></div>
+              </form>
+
+              <aside class="card">
+                <h4>Get in touch</h4>
+                <div class="muted" style="margin-top:8px">Email: hello@creative.dev</div>
+                <div class="muted" style="margin-top:6px">Phone: +91 98765 43210</div>
+                <div class="muted" style="margin-top:10px">Location: India</div>
+                <div style="margin-top:12px"><button class="ghost" onclick="alert('Open social links — demo')">Socials</button></div>
+              </aside>
+            </div>
+          </div>
+
+          <div style="width:320px;min-width:260px">
+            <div class="card reveal">
+              <h4>Quick Info</h4>
+              <p class="muted">Open to design-led frontend roles. Available for contracts of 2+ weeks.</p>
+              <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+                <div class="chip">Remote</div>
+                <div class="chip">Full-Time</div>
+                <div class="chip">Freelance</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div style="font-weight:700">Psycho — Creative Portfolio</div>
+      <div style="color:var(--muted);font-size:13px">© <span id="year"></span> — Built as a frontend demo</div>
+    </div>
+  </footer>
+
+  <!-- Modal for project preview -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="sheet">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <strong id="modalTitle">Project</strong>
+        <button class="ghost" onclick="closeModal()">Close</button>
+      </div>
+      <img id="modalImg" src="" alt="project preview" />
+      <p id="modalDesc" style="margin-top:10px;color:var(--muted)"></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // sample projects data
+    const projects = [
+      {id:1,title:'Brand Landing Concept',img:'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop',desc:'A motion-led brand landing page with micro-interactions.'},
+      {id:2,title:'E-commerce Prototype',img:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop',desc:'High-converting storefront with product storytelling and animation.'},
+      {id:3,title:'Portfolio Rebuild',img:'https://web-mate.gr/wp-content/uploads/2023/10/anakataskeui-istoselidas.webp',desc:'Reimagined portfolio with faster load and modern aesthetic.'},
+      {id:4,title:'Interaction Library',img:'https://cdn.sanity.io/images/qyzm5ged/production/f9dd4241fbd9be4938c8d211dd9a562a315e3249-2138x1200.jpg/3.-(Collaboration)-Interaction-libraries.jpg',desc:'Reusable UI components with accessible animations.'}
+    ];
+
+    const grid = document.getElementById('projectsGrid');
+    grid.innerHTML = projects.map(p => `
+      <article class="proj reveal" tabindex="0" onclick="openModal(${p.id})" onkeydown="if(event.key==='Enter') openModal(${p.id})">
+        <img src="${p.img}" alt="${p.title}" loading="lazy" />
+        <div class="meta">
+          <h4>${p.title}</h4>
+          <p>${p.desc}</p>
+        </div>
+      </article>
+    `).join('');
+
+    // modal
+    function openModal(id){
+      const p = projects.find(x=>x.id===id);
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalImg').src = p.img;
+      document.getElementById('modalDesc').textContent = p.desc;
+      const modal = document.getElementById('modal');
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){
+      const modal = document.getElementById('modal');
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+    }
+    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
+
+    // reveal on scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+        }
+      });
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // nav active state on scroll
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+    const navObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const id = entry.target.id;
+        const link = document.querySelector('nav a[href="#'+id+'"]');
+        if(entry.isIntersecting){
+          navLinks.forEach(l=>l.classList.remove('active'));
+          if(link) link.classList.add('active');
+        }
+      });
+    },{threshold:0.4});
+    sections.forEach(s=>navObserver.observe(s));
+
+    // animate skill bars after reveal
+    const skillObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.querySelectorAll('.bar > i').forEach(i=>{
+            const w = i.style.width;
+            i.style.width = w; // trigger transition
+          })
+        }
+      })
+    },{threshold:0.25});
+    document.querySelectorAll('.skill').forEach(s=>skillObserver.observe(s));
+
+    // keyboard accessibility: close modal on Esc
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+  </script>
+</body>
+</html>

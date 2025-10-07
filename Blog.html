@@ -118,11 +118,22 @@
     // SLIDESHOW SETUP
     // -----------------------
 
-    // 🔥 Replace this with your actual GitHub username + repo + folder path
-    const baseGitHubURL = "const baseGitHubURL = " https://raw.githubusercontent.com/Hacksking/Hacksking/main/Linux/ ";
+    // Detect if hosted on GitHub Pages
+    const isGitHubPages = window.location.hostname.includes("github.io");
+
+    // Choose the correct base path for images
+    let basePath;
+
+    if (isGitHubPages) {
+        // ✅ When running on GitHub Pages
+        basePath = "https://raw.githubusercontent.com/Hacksking/Hacksking/main/Linux/";
+    } else {
+        // ✅ When running locally (e.g. VS Code, Replit)
+        basePath = "linux/";
+    }
 
     // If your images are named 1.png to 8.png
-    const slides = Array.from({ length: 8 }, (_, i) => `${baseGitHubURL}${i + 1}.png`);
+    const slides = Array.from({ length: 8 }, (_, i) => `${basePath}${i + 1}.png`);
 
     // Preload images
     slides.forEach(src => {

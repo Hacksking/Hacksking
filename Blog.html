@@ -14,9 +14,7 @@
         font-family: monospace;
     }
 
-    canvas {
-        display: block;
-    }
+    canvas { display: block; }
 
     /* Slide container */
     #pptContainer {
@@ -50,11 +48,9 @@
         100% { box-shadow: 0 0 40px #0f0, 0 0 80px #0f0 inset; }
     }
 
-    /* Show PPT button */
-    #showPPTBtn {
+    /* Buttons */
+    #showPPTBtn, #nextBtn {
         position: fixed;
-        bottom: 20px;
-        right: 60px;
         background: #0f0;
         color: black;
         border: none;
@@ -67,34 +63,13 @@
         z-index: 20;
     }
 
-    #showPPTBtn:hover {
+    #showPPTBtn { bottom: 20px; right: 60px; }
+    #nextBtn { top: 50%; right: 20px; transform: translateY(-50%); }
+
+    #showPPTBtn:hover, #nextBtn:hover {
         background: #0c0;
         box-shadow: 0 0 30px #0f0, 0 0 60px #0f0 inset;
     }
-
-    /* Next button */
-    #nextBtn {
-        position: fixed;
-        top: 50%;
-        right: 20px;
-        transform: translateY(-50%);
-        background: #0f0;
-        color: black;
-        border: none;
-        padding: 12px 20px;
-        cursor: pointer;
-        font-weight: bold;
-        border-radius: 12px;
-        box-shadow: 0 0 20px #0f0, 0 0 40px #0f0 inset;
-        transition: 0.3s;
-        z-index: 20;
-    }
-
-    #nextBtn:hover {
-        background: #0c0;
-        box-shadow: 0 0 30px #0f0, 0 0 60px #0f0 inset;
-    }
-
 </style>
 </head>
 <body>
@@ -105,8 +80,7 @@
 <button id="nextBtn">&gt;</button>
 
 <div id="pptContainer">
-    <!-- Only one img -->
-    <img id="slideImg" src="./linux/1.jpg" alt="Slide">
+    <img id="slideImg" src="" alt="Slide" loading="lazy">
 </div>
 
 <script>
@@ -121,49 +95,54 @@
     const lettersArray = letters.split("");
     const fontSize = 16;
     const columns = canvas.width / fontSize;
-
     const drops = [];
     for (let x = 0; x < columns; x++) drops[x] = Math.random() * canvas.height;
 
     function draw() {
         ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
         ctx.fillStyle = "#0F0";
         ctx.font = fontSize + "px monospace";
 
         for (let i = 0; i < drops.length; i++) {
             const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
             ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
             drops[i]++;
         }
     }
 
     setInterval(draw, 50);
 
-    // SLIDESHOW
-    const slides = [
-        "https://ibb.co/8D1WRhf6/1.png",
-        "https://ibb.co/fdyfmpq5/2.png",
-        "https://ibb.co/ZRCQrvFy",
-        "https://ibb.co/JWhXfBtL",
-        "https://ibb.co/SXX405wJ",
-"https://ibb.co/hRPqVBBq",
-"https://ibb.co/WNmtGC4d"
-    ];
-    let currentSlide = 0;
+    // -----------------------
+    // SLIDESHOW SETUP
+    // -----------------------
 
+    // 🔥 Replace this with your actual GitHub username + repo + folder path
+    const baseGitHubURL = "https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/linux/";
+
+    // If your images are named 1.png to 8.png
+    const slides = Array.from({ length: 8 }, (_, i) => `${baseGitHubURL}${i + 1}.png`);
+
+    // Preload images
+    slides.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+
+    let currentSlide = 0;
     const showBtn = document.getElementById("showPPTBtn");
     const ppt = document.getElementById("pptContainer");
     const slideImg = document.getElementById("slideImg");
     const nextBtn = document.getElementById("nextBtn");
 
     showBtn.addEventListener("click", () => {
-        ppt.style.display = ppt.style.display === "flex" ? "none" : "flex";
+        if (ppt.style.display === "flex") {
+            ppt.style.display = "none";
+        } else {
+            ppt.style.display = "flex";
+            slideImg.src = slides[currentSlide];
+        }
     });
 
     nextBtn.addEventListener("click", () => {
@@ -171,13 +150,11 @@
         slideImg.src = slides[currentSlide];
     });
 
-    // Responsive canvas
     window.addEventListener("resize", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     });
 </script>
-
 
 </body>
 </html>

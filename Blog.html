@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrix Hacker Page with Slideshow</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        background: black;
+        font-family: monospace;
+    }
+
+    canvas {
+        display: block;
+    }
+
+    /* Slide container */
+    #pptContainer {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 900px;
+        height: 950px;
+        max-width: 95%;
+        max-height: 80%;
+        display: none;
+        border: 4px solid #0f0;
+        box-shadow: 0 0 20px #0f0, 0 0 40px #0f0 inset;
+        animation: glow 2s infinite alternate;
+        z-index: 10;
+        background: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #pptContainer img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    @keyframes glow {
+        0% { box-shadow: 0 0 10px #0f0, 0 0 20px #0f0 inset; }
+        100% { box-shadow: 0 0 40px #0f0, 0 0 80px #0f0 inset; }
+    }
+
+    /* Show PPT button */
+    #showPPTBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 60px;
+        background: #0f0;
+        color: black;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        border-radius: 12px;
+        box-shadow: 0 0 20px #0f0, 0 0 40px #0f0 inset;
+        transition: 0.3s;
+        z-index: 20;
+    }
+
+    #showPPTBtn:hover {
+        background: #0c0;
+        box-shadow: 0 0 30px #0f0, 0 0 60px #0f0 inset;
+    }
+
+    /* Next button */
+    #nextBtn {
+        position: fixed;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        background: #0f0;
+        color: black;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        border-radius: 12px;
+        box-shadow: 0 0 20px #0f0, 0 0 40px #0f0 inset;
+        transition: 0.3s;
+        z-index: 20;
+    }
+
+    #nextBtn:hover {
+        background: #0c0;
+        box-shadow: 0 0 30px #0f0, 0 0 60px #0f0 inset;
+    }
+
+</style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<button id="showPPTBtn">Show PPT</button>
+<button id="nextBtn">&gt;</button>
+
+<div id="pptContainer">
+    <!-- Only one img -->
+    <img id="slideImg" src="./linux/1.jpg" alt="Slide">
+</div>
+
+<script>
+    // MATRIX EFFECT
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters = "01010101010101010101010101010101010010101000000101111111110101";
+    const lettersArray = letters.split("");
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+
+    const drops = [];
+    for (let x = 0; x < columns; x++) drops[x] = Math.random() * canvas.height;
+
+    function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#0F0";
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+
+    setInterval(draw, 50);
+
+    // SLIDESHOW
+    const slides = [
+        "./linux/1.jpg",
+        "./linux/2.jpg",
+        "./linux/3.jpg",
+        "./linux/4.jpg",
+        "./linux/5.jpg"
+    ];
+    let currentSlide = 0;
+
+    const showBtn = document.getElementById("showPPTBtn");
+    const ppt = document.getElementById("pptContainer");
+    const slideImg = document.getElementById("slideImg");
+    const nextBtn = document.getElementById("nextBtn");
+
+    showBtn.addEventListener("click", () => {
+        ppt.style.display = ppt.style.display === "flex" ? "none" : "flex";
+    });
+
+    nextBtn.addEventListener("click", () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        slideImg.src = slides[currentSlide];
+    });
+
+    // Responsive canvas
+    window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
+
+
+</body>
+</html>

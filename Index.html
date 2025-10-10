@@ -1,0 +1,94 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sleek Mini Terminal</title>
+  <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+  
+<!-- Modal overlay -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Verifying access">
+  <div class="verify-box" id="verifyBox" aria-live="polite">
+    <div class="verify-head">
+      <div class="verify-dot" aria-hidden="true"></div>
+      <div>
+        <div class="verify-title">$ Verifying user credentials $</div>
+        <div class="verify-sub">Authorizing access — please wait</div>
+      </div>
+    </div>
+
+    <div class="verify-body">
+      <div class="verify-left">
+        <div class="detail"><strong>$User:</strong> varun_mangwani</div>
+        <div class="detail"><strong>$Session:</strong> Token $·$· $•$•$ •$•$•</div>
+        <div class="detail"><strong>$Hostname:</strong> vm-portfolio.local</div>
+
+        <div class="verifying" aria-hidden="true">
+          <div style="min-width:90px; color:var(--muted); font-size:13px">Status:</div>
+          <div class="dots-anim" id="statusText">VERIFYING<span id="dotSpan">...</span></div>
+        </div>
+
+        <div class="matrix" id="matrixArea" aria-hidden="true">
+          <!-- dynamic matrix lines inserted here -->
+        </div>
+
+        <div class="access" id="accessText" aria-hidden="true"><span class="typed" id="typedText"></span></div>
+      </div>
+
+      <div class="verify-right">
+        <div style="font-size:12px; color:var(--muted); margin-bottom:10px">Verification Checklist</div>
+        <div style="text-align:left; font-family:monospace;">
+          <div>$ Signature OK</div>
+          <div>$ Certificate OK</div>
+          <div>$ Timestamp OK</div>
+          <div>$ Integrity OK</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="success-glow" aria-hidden="true"></div>
+  </div>
+</div>
+
+<!-- Main page content (hidden until access granted) -->
+
+<!-- ....................................................................... -->
+  <div class="terminal-wrap" role="region" aria-label="Mini terminal widget">
+    <div class="term-header">
+      <div class="dots">
+        <div class="dot r"></div>
+        <div class="dot y"></div>
+        <div class="dot g"></div>
+      </div>
+      <div class="title">Sleek Mini Terminal <span class="hint">&nbsp;— type commands or auto</span></div>
+      <div class="controls">
+        <button class="control-btn" id="minBtn" title="Minimize/Restore">—</button>
+        <button class="control-btn" id="maxBtn" title="Stretch/Compress">▣</button>
+        <button class="control-btn" id="clearBtn" title="Clear">⟲</button>
+      </div>
+    </div>
+
+    <div class="screen">
+      <div class="output" id="output" aria-live="polite"></div>
+      <div class="prompt-row">
+        <input id="cmd" class="cmd-input" autocomplete="off" spellcheck="false" placeholder="type a command and press Enter..." />
+      </div>
+      <div class="btn-row">
+        <button class="action-btn" data-cmd="owner-education">Education</button>
+        <button class="action-btn" data-cmd="owner-projects">Projects</button>
+        <button class="action-btn" data-cmd="owner-future-plans">Plans</button>
+        <button class="action-btn" id="autoBtn">Auto</button>
+        <button class="action-btn" id="stopAutoBtn">Stop</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+

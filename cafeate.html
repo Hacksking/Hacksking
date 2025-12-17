@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cafe Ate PM</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    body { background: #1a0f0a; color: #f5f5f5; }
+
+    header { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1509042239860-f550ce710b93'); background-size: cover; background-position: center; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+    header h1 { font-size: 3.5rem; color: #c7a17a; }
+    header p { margin: 15px 0; font-size: 1.2rem; }
+    .btn { background: #c7a17a; color: #1a0f0a; padding: 12px 28px; text-decoration: none; border-radius: 30px; font-weight: bold; transition: 0.3s; }
+    .btn:hover { background: #b08b63; }
+
+    section { padding: 90px 10%; }
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title h2 { color: #c7a17a; font-size: 2.6rem; margin-bottom: 15px; }
+    .price-card { display:inline-block; background:#24150d; padding:14px 30px; border-radius:30px; border:1px solid #c7a17a; font-weight:bold; margin-bottom: 20px; }
+
+    .about { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px; }
+    .about div { background: #24150d; padding: 30px; border-radius: 20px; }
+    .about img { width:100%; border-radius:15px; margin-bottom:15px; object-fit:cover; height:180px; }
+
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+    .menu-card { background: #24150d; padding: 25px; border-radius: 22px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); transition: 0.3s; }
+    .menu-card:hover { transform: translateY(-8px); }
+    .menu-card img { width:100%; height:180px; object-fit:cover; border-radius:16px; margin-bottom:15px }
+    .menu-card h3 { color:#c7a17a; margin-bottom:12px }
+    .menu-card li { margin:8px 0 }
+    .highlight { border:2px solid #c7a17a }
+    .badge { background:#c7a17a; color:#1a0f0a; display:inline-block; padding:5px 12px; border-radius:20px; font-size:0.7rem; margin-bottom:10px; font-weight:bold }
+
+    .amenities { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 20px; }
+    .amenities div { background: #24150d; padding: 15px 25px; border-radius: 25px; font-weight: bold; text-align: center; transition: 0.3s; }
+    .amenities div.highlight { background: #c7a17a; color: #1a0f0a; }
+
+    .schedule-table { width: 100%; max-width: 700px; margin: 20px auto; border-collapse: collapse; }
+    .schedule-table th, .schedule-table td { padding: 12px 20px; text-align: center; border: 1px solid #c7a17a; }
+    .schedule-table th { background: #c7a17a; color: #1a0f0a; }
+    .schedule-table td.today { background: #c7a17a; color: #1a0f0a; font-weight: bold; }
+
+    footer { background: #120a06; padding: 30px; text-align: center; font-size: 0.9rem; }
+    @media(max-width: 600px) { header h1 { font-size: 2.5rem; } }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header>
+    <h1>Cafe Ate PM</h1>
+    <p>Enjoy a variety of Maggi, Pizza, Pasta, Fries, Momos, Wraps & Street Foods. <br> Perfect for vegetarians & fusion food lovers.</p>
+    <a href="#menu" class="btn">View Menu</a>
+  </header>
+
+  <!-- About -->
+  <section>
+    <div class="section-title">
+      <h2>About Us</h2>
+    </div>
+    <div class="about">
+      <div><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24" alt="Cafe Interior"><p>Warm interiors, calm lighting, coffee-first ambience.</p></div>
+      <div><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814" alt="Cafe Seating"><p>Comfortable indoor seating designed for long conversations.</p></div>
+      <div><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" alt="Burger"><p>Delicious gourmet burgers and Maggi varieties.</p></div>
+      <div><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Noodles"><p>Perfectly cooked noodles & pasta for a quick and tasty meal.</p></div>
+      <div><img src="https://plus.unsplash.com/premium_photo-1661670144311-90468a6cdf77?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Staff"> <p>Staff is hospitable and fast. Adequate prices and exotic ambiance make every visit special. Google rating: 4.1</p></div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="menu">
+    <div class="section-title">
+      <h2>Our Menu</h2>
+      <p class="menu-sub">Maggi, Pizza, Pasta, Fries, Momos, Wraps & Street Foods</p>
+      <div class="price-card">₹350 for 2 Persons</div>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-card highlight">
+        <span class="badge">Maggi & Noodles</span>
+        <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=692&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Maggi">
+        <h3>Maggi Specials</h3>
+        <ul>
+          <li>Masala Maggi – ₹60</li>
+          <li>Vegetable Maggi – ₹70</li>
+          <li>Fried Maggi – ₹90</li>
+          <li>Peri Peri Maggi – ₹100</li>
+          <li>Cheese & Corn Maggi – ₹100</li>
+          <li>Tandoori Maggi – ₹110</li>
+          <li>Chilli Paneer Maggi – ₹120</li>
+          <li>Cheese Baked Maggi – ₹120</li>
+        </ul>
+      </div>
+      <div class="menu-card highlight">
+        <span class="badge">Pizza</span>
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pizza">
+        <h3>Pizza Varieties</h3>
+        <ul>
+          <li>Lusty Margarita – ₹150</li>
+          <li>Garlic Pizza – ₹170</li>
+          <li>Super Veggie Delight – ₹180</li>
+          <li>Onion Pizza – ₹170</li>
+          <li>Corn Pizza – ₹190</li>
+          <li>Olive Delight Pizza – ₹190</li>
+          <li>Mix Veg Pizza – ₹190</li>
+          <li>Hot & Spicy Chinese Pizza – ₹200</li>
+        </ul>
+      </div>
+      <div class="menu-card highlight">
+        <span class="badge">Pasta & Quick Bites</span>
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Pasta">
+        <h3>Pasta & Fries</h3>
+        <ul>
+          <li>Creamy White Sauce Pasta – ₹150</li>
+          <li>Thikho Laal Pasta – ₹150</li>
+          <li>Paneer Makhni Pasta – ₹150</li>
+          <li>Pink Pasta (Mix Sauce) – ₹160</li>
+          <li>Cheese Burst Pasta – ₹160</li>
+          <li>Cheese Baked Pasta – ₹180</li>
+          <li>Classic Salted Fries – ₹70</li>
+          <li>Peri Peri Fries – ₹100</li>
+          <li>Desi Tadka Fries – ₹110</li>
+        </ul>
+      </div>
+      <div class="menu-card highlight">
+        <span class="badge">Momos & Wraps</span>
+        <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Momos">
+        <h3>Momos & Wraps</h3>
+        <ul>
+          <li>Fried Momos – ₹90</li>
+          <li>Gravy Momos – ₹110</li>
+          <li>Peri Peri Momos – ₹110</li>
+          <li>Cheese Baked Momos – ₹140</li>
+          <li>Cheese Paneer Wrap – ₹140</li>
+          <li>Veggie Pizza Wrap – ₹160</li>
+          <li>Masala Potato Wrap – ₹100</li>
+          <li>Chilli Chatpata Wrap – ₹160</li>
+        </ul>
+      </div>
+      <div class="menu-card highlight">
+        <span class="badge">Desserts & Platter</span>
+        <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dessert">
+        <h3>Desserts & Combos</h3>
+        <ul>
+          <li>Classic Hot Brownie – ₹110</li>
+          <li>Hot Brownie with Ice Cream – ₹130</li>
+          <li>AtePM's Fried Ice Cream – ₹120</li>
+          <li>Student Platter – ₹300</li>
+          <li>Rotating Platter – ₹320</li>
+          <li>Herbivorous Platter – ₹350</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services & Weekly Schedule -->
+  <section>
+    <div class="section-title"><h2>Services & Weekly Schedule</h2></div>
+    <div class="amenities">
+      <div class="highlight">Credit Cards Accepted</div>
+      <div class="highlight">Delivery</div>
+      <div class="highlight">Outdoor Seating</div>
+      <div class="highlight">Takeaway</div>
+      <div class="highlight">Booking</div>
+      <div class="highlight">Wheelchair Accessible</div>
+    </div>
+
+    <table class="schedule-table" id="schedule-table">
+      <thead>
+        <tr><th>Day</th><th>Opening Hours</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sunday</td><td>10:30AM-10PM</td></tr>
+        <tr><td>Monday</td><td>10:30AM-10PM</td></tr>
+        <tr><td>Tuesday</td><td>10:30AM-10PM</td></tr>
+        <tr><td>Wednesday</td><td>10:30AM-10PM</td></tr>
+        <tr><td>Thursday</td><td>10:30AM-10PM</td></tr>
+        <tr><td>Friday</td><td>10:30AM-10PM</td></tr>
+        <tr><td>Saturday</td><td>10:30AM-10PM</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <script>
+    const todayIndex = new Date().getDay();
+    const tableRows = document.querySelectorAll('#schedule-table tbody tr');
+    tableRows[todayIndex].classList.add('today');
+  </script>
+
+  <!-- Footer -->
+  <footer><p>© 2025 Cafe Ate PM | Crafted with Coffee & Love | Follow us: @atepmcafe</p></footer>
+
+</body>
+</html>

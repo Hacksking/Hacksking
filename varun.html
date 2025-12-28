@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Workflow Builder</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body { margin:0; background:#0f172a; overflow:hidden; font-family:Arial,sans-serif; }
+#canvas { position:relative; width:100vw; height:calc(100vh - 60px); background:#020617; }
+.node { position:absolute; cursor:grab; display:flex; align-items:center; justify-content:center; font-weight:600; color:white; padding:5px 10px; border-radius:6px; min-width:120px; min-height:60px; text-align:center; }
+.square { width:160px; height:80px; border-radius:8px; }
+.circle { width:120px; height:120px; border-radius:50%; }
+.rounded { width:180px; height:80px; border-radius:999px; }
+.diamond { width:120px; height:120px; transform:rotate(45deg); display:flex; align-items:center; justify-content:center; }
+.diamond span { transform:rotate(-45deg); }
+.selected { outline:3px dashed #facc15; }
+svg { position:absolute; width:100%; height:100%; }
+path { cursor:pointer; }
+path.selected { stroke:#facc15 !important; }
+</style>
+</head>
+
+<body>
+
+<!-- Toolbar -->
+<div class="flex justify-between items-center bg-slate-900 p-2 h-15">
+  <div class="flex gap-2">
+    <button class="bg-green-500 px-3 py-1 rounded" onclick="saveFlow()">Save</button>
+    <button class="bg-blue-500 px-3 py-1 rounded" onclick="loadFlow()">Load</button>
+    <button class="bg-red-500 px-3 py-1 rounded" onclick="deleteSelected()">Delete Node</button>
+    <button class="bg-yellow-500 px-3 py-1 rounded" onclick="deleteSelectedLine()">Delete Line</button>
+    <button class="bg-purple-500 px-3 py-1 rounded" onclick="promptJSON()">Load JSON</button>
+  </div>
+  <div class="flex items-center gap-2">
+    <span>Selected Node Color:</span>
+    <input type="color" id="nodeColorPicker" value="#22c55e" onchange="changeNodeColor()">
+    <span>Line Style:</span>
+    <select id="lineStyle" onchange="drawLines()">
+      <option value="curved">Curved</option>
+      <option value="straight">Straight</option>
+    </select>
+  </div>
+</div>
+
+<!-- Canvas -->
+<div id="canvas">
+  <svg id="lines"></svg>
+</div>
+
+<script>
+const canvas = document.getElementById("canvas");
+const svg = document.getElementById("lines");
+const colorPicker = document.getElementById("nodeColorPicker");
+const lineStyleSelect = document.getElementById("lineStyle");
+
+let nodes = [], connections = [];
+let connectFrom = null, selectedNode = null, selectedLine = null;
+
+/* CREATE NODE */
+function createNode(name,type='square',x=200,y=100,color='#22c55e'){
+    const node = document.createElement("div");
+    node.className = `node ${type}`;
+    node.style.left = x+'px';
+    node.style.top = y+'px';
+    node.style.background = color;
+
+    const label = document.createElement("span");
+    label.textContent = name;
+    node.appendChild(label);
+
+    canvas.appendChild(node);
+    nodes.push(node);
+
+    node.onmousedown = e => dragNode(e,node);
+    node.onclick = e => selectNode(e,node);
+    node.ondblclick = () => renameNode(label);
+
+    return node;
+}
+
+/* DRAG NODE */
+function dragNode(e,node){
+    let ox = e.offsetX, oy = e.offsetY;
+    document.onmousemove = ev=>{
+        node.style.left = ev.pageX - ox + "px";
+        node.style.top = ev.pageY - oy - 60 + "px";
+        drawLines();
+    };
+    document.onmouseup = ()=>document.onmousemove=null;
+}
+
+/* SELECT NODE */
+function selectNode(e,node){
+    e.stopPropagation();
+    clearSelection();
+    node.classList.add("selected");
+    selectedNode = node;
+    colorPicker.value = rgbToHex(node.style.background);
+
+    if(!connectFrom) connectFrom=node;
+    else{
+        connections.push({from:connectFrom,to:node});
+        connectFrom=null;
+        drawLines();
+    }
+}
+
+/* RENAME NODE */
+function renameNode(label){
+    const name = prompt("Enter node name:",label.textContent);
+    if(name) label.textContent=name;
+}
+
+/* CLEAR SELECTION */
+function clearSelection(){
+    nodes.forEach(n=>n.classList.remove("selected"));
+    document.querySelectorAll("path").forEach(p=>p.classList.remove("selected"));
+    selectedNode=null;
+    selectedLine=null;
+}
+
+/* DELETE SELECTED NODE */
+function deleteSelected(){
+    if(selectedNode){
+        connections = connections.filter(c=>c.from!==selectedNode && c.to!==selectedNode);
+        nodes = nodes.filter(n=>n!==selectedNode);
+        selectedNode.remove();
+        selectedNode=null;
+        drawLines();
+    }
+}
+
+/* DELETE SELECTED LINE */
+function deleteSelectedLine(){
+    if(selectedLine!==null){
+        connections.splice(selectedLine,1);
+        selectedLine=null;
+        drawLines();
+    }
+}
+
+/* DRAW LINES */
+function drawLines(){
+    svg.innerHTML='';
+    const style = lineStyleSelect.value;
+    connections.forEach((c,i)=>{
+        const r1=c.from.getBoundingClientRect();
+        const r2=c.to.getBoundingClientRect();
+        const x1=r1.left+r1.width/2;
+        const y1=r1.top+r1.height/2-60;
+        const x2=r2.left+r2.width/2;
+        const y2=r2.top+r2.height/2-60;
+
+        const path=document.createElementNS("http://www.w3.org/2000/svg","path");
+        if(style==='curved'){
+            const dx=Math.abs(x2-x1)*0.5;
+            path.setAttribute("d",`M ${x1} ${y1} C ${x1+dx} ${y1}, ${x2-dx} ${y2}, ${x2} ${y2}`);
+        } else {
+            path.setAttribute("d",`M ${x1} ${y1} L ${x2} ${y2}`);
+        }
+        path.setAttribute("stroke","#38bdf8");
+        path.setAttribute("stroke-width","3");
+        path.setAttribute("fill","none");
+        path.onclick=e=>{e.stopPropagation();clearSelection();path.classList.add("selected");selectedLine=i;}
+        svg.appendChild(path);
+    });
+}
+
+/* CHANGE NODE COLOR */
+function changeNodeColor(){
+    if(selectedNode) selectedNode.style.background=colorPicker.value;
+}
+
+/* SAVE FLOW */
+function saveFlow(){
+    const name=prompt("Workflow name?");
+    if(!name) return;
+    const data={
+        nodes:nodes.map(n=>({
+            name:n.querySelector("span").textContent,
+            type:[...n.classList].find(c=>['square','circle','diamond','rounded'].includes(c)),
+            color:n.style.background,
+            x:n.style.left,
+            y:n.style.top
+        })),
+        connections:connections.map(c=>({from:nodes.indexOf(c.from),to:nodes.indexOf(c.to)})),
+        lineStyle:lineStyleSelect.value
+    };
+    localStorage.setItem('workflow_'+name,JSON.stringify(data));
+    alert("Saved!");
+}
+
+/* LOAD FLOW */
+function loadFlow(){
+    const name=prompt("Workflow name?");
+    const data=JSON.parse(localStorage.getItem('workflow_'+name));
+    if(!data) return alert("Not found");
+    nodes.forEach(n=>n.remove()); nodes=[]; connections=[];
+    data.nodes.forEach(n=>{
+        createNode(n.name,n.type,parseInt(n.x),parseInt(n.y),n.color);
+    });
+    data.connections.forEach(c=>{
+        connections.push({from:nodes[c.from],to:nodes[c.to]});
+    });
+    if(data.lineStyle) lineStyleSelect.value=data.lineStyle;
+    drawLines();
+}
+
+/* LOAD FROM JSON */
+function promptJSON(){
+    const jsonStr=prompt("Paste JSON structure:");
+    if(!jsonStr) return;
+    let data;
+    try{data=JSON.parse(jsonStr);}catch(e){alert("Invalid JSON"); return;}
+    generateFromJSON(data);
+}
+
+/* GENERATE WORKFLOW FROM JSON WITH AUTO LAYOUT */
+function generateFromJSON(json){
+    nodes.forEach(n=>n.remove()); nodes=[]; connections=[];
+    const positions={};
+    let yStart=50;
+    const xSpacing=200, ySpacing=150;
+
+    // Compute levels
+    const levels = {};
+    function computeLevel(nodeName, lvl){
+        levels[nodeName] = Math.max(levels[nodeName]||0, lvl);
+        const children = (json[nodeName] && json[nodeName].children) || [];
+        children.forEach(c => computeLevel(c,lvl+1));
+    }
+    for(const key in json) computeLevel(key,0);
+
+    // Group nodes by level
+    const levelNodes = {};
+    for(const node in levels){
+        const lvl=levels[node];
+        if(!levelNodes[lvl]) levelNodes[lvl]=[];
+        levelNodes[lvl].push(node);
+    }
+
+    // Create nodes with auto positions
+    for(const lvl in levelNodes){
+        const names = levelNodes[lvl];
+        const totalWidth = names.length * xSpacing;
+        names.forEach((name,i)=>{
+            const x = (canvas.clientWidth - totalWidth)/2 + i*xSpacing;
+            const y = parseInt(lvl)*ySpacing + yStart;
+            const node = createNode(name,'square',x,y,'#22c55e');
+            positions[name]=node;
+        });
+    }
+
+    // Create connections
+    for(const parent in json){
+        const children=json[parent].children||[];
+        children.forEach(child=>{
+            if(positions[parent] && positions[child]){
+                connections.push({from:positions[parent],to:positions[child]});
+            }
+        });
+    }
+
+    drawLines();
+}
+
+/* RGB to HEX */
+function rgbToHex(rgb){
+    const result = rgb.match(/\d+/g);
+    if(!result) return '#22c55e';
+    return "#" + result.slice(0,3).map(x=>parseInt(x).toString(16).padStart(2,'0')).join('');
+}
+
+/* CANVAS CLICK */
+canvas.onclick=()=>{connectFrom=null; clearSelection();}
+/* KEY DELETE */
+document.addEventListener('keydown',e=>{
+    if(e.key==='Delete'||e.key==='Backspace') deleteSelected();
+});
+</script>
+</body>
+</html>

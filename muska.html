@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Gift for Muskii 💖</title>
+
+<style>
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body{
+    font-family: "Georgia", serif;
+    background:#fde7f3;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Screens */
+.screen{
+    display:none;
+    width:100%;
+    height:100vh;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    position: relative;
+}
+.active{display:flex;}
+
+/* Envelope */
+#envelope{
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    perspective:800px;
+}
+
+.env-box {
+    position: relative;
+    width: 220px;
+    height: 140px;
+    background: #ff8fbf;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.env-box .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ff8fbf;
+    border-radius: 8px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Flap properly inside rectangle */
+.env-box .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; 
+    background: #ff6fa5;
+    clip-path: polygon(0 0, 100% 0, 50% 100%); 
+    transform-origin: top center;
+    transition: transform 0.7s ease;
+    z-index: 2;
+}
+
+.env-box.open .flap {
+    transform: rotateX(180deg); 
+}
+
+.env-box .letter {
+    position: absolute;
+    width: 200px;
+    height: 120px;
+    background: #fff;
+    top: 10px;
+    left: 10px;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 0.7s ease 0.3s;
+    z-index: 0;
+}
+
+.env-box.open .letter {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.env-text{
+    margin-top:20px;
+    font-size:16px;
+    text-align:center;
+    color:#444;
+    max-width:90%;
+}
+
+/* Confetti / emojis */
+#confetti-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 1000;
+}
+
+.confetti {
+    position: absolute;
+    font-size: 24px;
+    user-select: none;
+}
+
+/* Book pages */
+.book-page{
+    width:90%;
+    max-width:380px;
+    min-height:70%;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+.book-page p{
+    font-size:16px;
+    line-height:1.6;
+    color:#444;
+    word-wrap:break-word;
+}
+
+/* Mid photo with fixed 4:5 aspect ratio */
+.mid-photo{
+    width:100%;
+    max-width:200px;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    display:block;
+    margin:20px auto;
+    border-radius:12px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* Navigation buttons inside book */
+.nav{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+.nav button{
+    background:#ff6fa5;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:20px;
+    flex:1 1 45%;
+    margin:5px;
+    min-width:100px;
+}
+
+/* Cake */
+#cake{
+    flex-direction:column;
+    text-align:center;
+    padding:10px;
+    position: relative;
+}
+#cake img{
+    width:90%;
+    max-width:220px;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    margin:20px 0;
+}
+#cake h2{
+    color:#ff3f8b;
+}
+#cake button{
+    padding:12px 22px;
+    border:none;
+    background:#ff5c8a;
+    color:white;
+    border-radius:25px;
+    font-size:16px;
+}
+
+/* Final */
+#final{
+    flex-direction:column;
+    text-align:center;
+    background:linear-gradient(135deg,#ffd6e8,#f3d9ff);
+    padding:20px;
+}
+#final h1{
+    color:#ff2f7a;
+    font-size:32px;
+    line-height:1.2;
+    margin-bottom:12px;
+}
+#final p{
+    font-size:18px;
+    color:#555;
+    margin:6px 0;
+    max-width:90%;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Envelope -->
+<div class="screen active" id="envelope">
+    <div class="env-box" onclick="openEnvelope(this)">
+        <div class="back"></div>
+        <div class="flap"></div>
+        <div class="letter">
+            <p>Tap to open your gift 💌</p>
+        </div>
+    </div>
+    <div class="env-text">Tap the envelope to see a gift from Mangwani 💌</div>
+</div>
+
+<!-- Book Page 1 -->
+<div class="screen" id="book1">
+    <div class="book-page">
+        <div>
+            <p>
+                Dear Muskii,<br><br>
+                When we started preparing in fireless cooking,  
+                I saw your dedication and that effortless cuteness in everything you did.  
+                (Modak abhi tak nahi mila though 😄)<br><br>
+                You are the <b>best tutor</b>, the <b>best coder</b> (I think 😉),  
+                the <b>best friend</b>, and truly a <b>bro</b>.<br><br>
+                Thank you so much for being a part of my life.  
+                It really means more than you know.
+            </p>
+            <img src="https://i.ibb.co/WdzK5Ng/Snapchat-991853917.jpg" class="mid-photo">
+        </div>
+        <div class="nav">
+            <span></span>
+            <button onclick="go('book2')">Next &gt;</button>
+        </div>
+    </div>
+</div>
+
+<!-- Book Page 2 -->
+<div class="screen" id="book2">
+    <div class="book-page">
+        <div>
+            <p>
+                May your smile always stay the same,  
+                because it makes everything lighter.<br><br>
+                I hope you have the <b>best days ahead</b>,  
+                and become <b>number one in every field you choose</b>.<br><br>
+                Bas <b>JavaScript achhe se seekhni hai</b> 😄  
+                aur haan… <b>Java bhi</b>.<br><br>
+                You’re capable of much more than you realize.
+            </p>
+            <img src="https://i.ibb.co/rKwB0p3J/Snapchat-1500142876.jpg" class="mid-photo">
+        </div>
+        <div class="nav">
+            <button onclick="go('book1')">&lt; Prev</button>
+            <button onclick="go('cake')">Next &gt;</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cake -->
+<div class="screen" id="cake">
+    <h2>Happy Birthday Muskii 💖</h2>
+    <img src="https://static.vecteezy.com/system/resources/previews/007/973/500/non_2x/birthday-cake-sticker-big-cake-with-candle-in-a-flat-style-with-cut-contour-on-white-background-vector.jpg">
+    <div id="confetti-container"></div>
+    <button onclick="blowCandles()">Blow Candles 🎂</button>
+</div>
+
+<!-- Final -->
+<div class="screen" id="final">
+    <h1>🎉 Happy Birthday<br>Muska! 💖</h1>
+    <p>May God bless you and fill your life with happiness, love, and success.</p>
+    <p>May all your dreams and wishes come true! ✨</p>
+</div>
+
+<script>
+function openEnvelope(el){
+    el.classList.add('open');
+    setTimeout(() => {
+        go('book1');
+    }, 1000);
+}
+
+function go(id){
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+function blowCandles(){
+    const container = document.getElementById('confetti-container');
+    const emojis = ['🎉','🔥','💖','🎂','✨','👍','🤩','💥','💃','🕺','🎶','😎'];
+    const texts = ['Bro!','Cool!','Yay!','Woohoo!','Wow!'];
+    const allItems = [...emojis, ...texts];
+
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2 + 50;
+
+    for(let i=0;i<150;i++){
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = centerX + 'px';
+        confetti.style.top = centerY + 'px';
+        confetti.textContent = allItems[Math.floor(Math.random()*allItems.length)];
+        confetti.style.fontSize = (Math.random()*24 + 20) + 'px';
+        container.appendChild(confetti);
+
+        const angle = Math.random() * 2 * Math.PI; 
+        const speed = Math.random() * 12 + 6;
+        const vx = speed * Math.cos(angle);
+        const vy = speed * Math.sin(angle);
+        const rotationSpeed = (Math.random()-0.5)*20;
+        let life = 0;
+
+        function animate(){
+            const gravity = 0.3;
+            confetti.style.left = centerX + vx*life + 'px';
+            confetti.style.top = centerY + vy*life + 0.5*gravity*life*life + 'px';
+            confetti.style.transform = `rotate(${rotationSpeed*life}deg)`;
+            life++;
+            if(life < 80){
+                requestAnimationFrame(animate);
+            } else {
+                confetti.remove();
+            }
+        }
+        animate();
+    }
+
+    setTimeout(()=>{go('final');}, 2500);
+}
+</script>
+
+</body>
+</html>

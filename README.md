@@ -50,12 +50,23 @@ I focus on **building strong fundamentals** while growing consistently, step by 
 > Animated bars reflect progress visually — always growing with every step!  
 
 ---
-
 ## 📖 Step-by-Step Learning Tracker
+
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:ffd1dc,50:ffe4ec,100:e0c3fc&height=120&section=body&text=Step+1%3A+C%2FC%2B%2B+Practice&fontSize=18&fontColor=5b2d8b&animation=fadeIn" />
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:ffe4ec,50:e0c3fc,100:ffd1dc&height=120&section=body&text=Step+2%3A+Python+Practice&fontSize=18&fontColor=5b2d8b&animation=fadeIn" />
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e0c3fc,50:ffd1dc,100:ffe4ec&height=120&section=body&text=Step+3%3A+SQL+Queries&fontSize=18&fontColor=5b2d8b&animation=fadeIn" />
+
+<!-- Step 1: C/C++ -->
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&height=100&width=280&section=body&text=🌸+Step+1:+C%2FC%2B%2B+Practice&fontSize=22&fontColor=ffffff&animation=fadeIn" />
+
+&nbsp;&nbsp;
+
+<!-- Step 2: Python -->
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&height=100&width=280&section=body&text=🐍+Step+2:+Python+Practice&fontSize=22&fontColor=ffffff&animation=fadeIn" />
+
+&nbsp;&nbsp;
+
+<!-- Step 3: SQL -->
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&height=100&width=280&section=body&text=🗄️+Step+3:+SQL+Queries&fontSize=22&fontColor=ffffff&animation=fadeIn" />
+
 </p>
 
 ---

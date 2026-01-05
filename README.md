@@ -3,8 +3,9 @@
   <img src="https://capsule-render.vercel.app/api?type=waving&height=180&section=header&text=Muskan%20Gangwani&fontSize=45&fontColor=ffffff&color=gradient&animation=fadeIn&fontAlignY=35" />
 </p>
 
+
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=800&color=EC4899&center=true&vCenter=true&width=700&lines=Focused+Learner+%F0%9F%8C%B1;C%2FC%2B%2B+%F0%9F%92%BB;Python+%F0%9F%90%8D;SQL+%F0%9F%97%84" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=800&color=EC4899&center=true&vCenter=true&width=700&lines=Communication+Head;Bizhub+I.T.+Lead;Python+Enthusiast;C%2FC%2B%2BLearner" />
 </p>
 
 ---
@@ -29,9 +30,6 @@ I focus on **building strong fundamentals** while growing consistently, step by 
   <img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyN3Q2cXc0cTlkeGU2N3ZqOTJhdngwN21odzRwcjFocmEzYm81MTRubCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VTtANKl0beDFQRLDTh/giphy.gif" width="300"/>
 </p>
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=c,cpp,python,sql" />
-</p>
 
 - Strengthening **C & C++ fundamentals**  
 - Practicing **Python code**  
@@ -39,15 +37,23 @@ I focus on **building strong fundamentals** while growing consistently, step by 
 
 ---
 
-## 🌸 Skills (Animated Progress Bars)
-<p align="center">
-  <img src="https://progress-bar.dev/80/?title=C&color=ff8ab4&height=18" />  
-  <img src="https://progress-bar.dev/75/?title=C++&color=ff9fc1&height=18" />  
-  <img src="https://progress-bar.dev/60/?title=Python&color=ec4899&height=18" />  
-  <img src="https://progress-bar.dev/50/?title=SQL&color=f472b6&height=18" />
-</p>
+## 🌸 Skills
 
-> Animated bars reflect progress visually — always growing with every step!  
+<p align="center">
+
+<!-- C -->
+<img src="https://img.shields.io/badge/C-80%25-ff8ab4?style=for-the-badge&logo=c&logoColor=ffffff" />  
+
+<!-- C++ -->
+<img src="https://img.shields.io/badge/C++-60%25-ff9fc1?style=for-the-badge&logo=c%2B%2B&logoColor=ffffff" />  
+
+<!-- Python -->
+<img src="https://img.shields.io/badge/Python-50%25-ec4899?style=for-the-badge&logo=python&logoColor=ffffff" />  
+
+<!-- SQL -->
+<img src="https://img.shields.io/badge/SQL-50%25-f472b6?style=for-the-badge&logo=mysql&logoColor=ffffff" />  
+
+</p>
 
 ---
 ## 📖 Step-by-Step Learning Tracker

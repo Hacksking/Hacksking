@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Comic+Neue&size=22&pause=1000&color=EC4899&center=true&vCenter=true&width=650&lines=Learning+with+curiosity+🌱;Future+Python+Developer+🐍;Growing+step+by+step+✨" />
+  <img src="/>
 </p>
 
 ---

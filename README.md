@@ -10,9 +10,9 @@
 
 ---
 
-## 💖 All About Me
+##  👩‍💻All About Me
 <p align="center">
-  <img src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUya2w2MDJjbmJmeTV2bnhvNjduaG81cXc4YWh3dmJ3Y3YwdzV3ZHlzOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/fAbbq1tF99d0uiizsr/giphy.gif" width="280"/>
+  <img src="https://i.ibb.co/SD3HXBdm/68747470733a2f2f63646e2e6472696262626c652e636f6d2f75736572732f313336343032392f73637265656e73686f7473.gif" width="280"/>
 </p>
 
 Hello! I am **Muskan Gangwani**, passionate about coding and learning technologies deeply.  
@@ -42,16 +42,16 @@ I focus on **building strong fundamentals** while growing consistently, step by 
 <p align="center">
 
 <!-- C -->
-<img src="https://img.shields.io/badge/C-80%25-ff8ab4?style=for-the-badge&logo=c&logoColor=ffffff" />  
+<img src="https://img.shields.io/badge/C-90%25-ff8ab4?style=for-the-badge&logo=c&logoColor=ffffff" />  
 
 <!-- C++ -->
 <img src="https://img.shields.io/badge/C++-60%25-ff9fc1?style=for-the-badge&logo=c%2B%2B&logoColor=ffffff" />  
 
 <!-- Python -->
-<img src="https://img.shields.io/badge/Python-50%25-ec4899?style=for-the-badge&logo=python&logoColor=ffffff" />  
+<img src="https://img.shields.io/badge/Python-80%25-ec4899?style=for-the-badge&logo=python&logoColor=ffffff" />  
 
 <!-- SQL -->
-<img src="https://img.shields.io/badge/SQL-50%25-f472b6?style=for-the-badge&logo=mysql&logoColor=ffffff" />  
+<img src="https://img.shields.io/badge/SQL-60%25-f472b6?style=for-the-badge&logo=mysql&logoColor=ffffff" />  
 
 </p>
 

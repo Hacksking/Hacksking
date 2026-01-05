@@ -1,80 +1,82 @@
-<!-- Cute Header Banner -->
+<!-- Top Banner -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=soft&color=0:ffd1dc,50:ffe4ec,100:e0c3fc&height=200&section=header&text=Muskan%20Gangwani&fontSize=42&fontColor=5b2d8b" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&section=header&text=Muskan%20Gangwani&fontSize=45&fontColor=ffffff&color=gradient&animation=fadeIn&fontAlignY=35" />
 </p>
 
 <p align="center">
-  <img src="/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=800&color=F472B6&center=true&vCenter=true&width=700&lines=Focused+Learner+%F0%9F%8C%B1;C%2FC%2B%2B+Enthusiast+%F0%9F%92%BB;Aspiring+Python+Developer+%F0%9F%90%8D;SQL+Practitioner+%F0%9F%97%84" />
 </p>
 
 ---
 
-## 🌷 About Me
+## 💼 About Me
 <p align="center">
-  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="240"/>
+  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" width="280"/>
 </p>
 
-Hi! 👋 I’m **Muskan**, a learner who loves understanding things deeply and building a strong foundation.  
-I believe in **learning slowly, clearly, and properly** 🌸
+I am **Muskan Gangwani**, a passionate learner exploring programming and development step by step.  
+I focus on **growing skills professionally**, while maintaining consistency and discipline.  
 
-- 💻 Learning **C & C++**
-- 🐍 Aspiring **Python Developer**
-- 🗄️ Learning **SQL** step by step
-- 📚 Focused on fundamentals & practice
-- ✨ Growth mindset, no rush — just progress
+- 💻 Learning **C & C++**  
+- 🐍 Aspiring **Python Developer**  
+- 🗄️ Practicing **SQL queries properly**  
+- 🌸 Strong fundamentals & problem-solving mindset  
 
 ---
 
-## 🧁 Learning Journey
-<p align="center">
-  <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" width="260"/>
-</p>
-
-- 🌱 Understanding basics before advanced topics  
-- ✍️ Practicing code regularly  
-- 🧠 Learning *why* things work, not just *how*  
-- 💗 Enjoying the process of becoming better  
-
----
-
-## 🛠️ Tech I’m Learning
+## 🛠️ Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=c,cpp,python,sql" />
-</p>
-
-<p align="center">
-  <sub>Still learning ✨ still growing 🌸</sub>
+  <img src="https://skillicons.dev/icons?i=c,cpp,python,sql,html,css,js,react" />
 </p>
 
 ---
 
 ## 📖 Current Focus
 <p align="center">
-  <img src="https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif" width="250"/>
+  <img src="https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif" width="260"/>
 </p>
 
-- 🧩 Clear understanding of C & C++ logic  
-- 🐍 Learning Python properly (basics → practice → confidence)  
-- 🗄️ Writing clean SQL queries  
-- 🌷 Building patience & consistency  
+- Strengthening **C & C++ fundamentals**  
+- Writing **clean Python code**  
+- Learning **SQL database management**  
+- Building **projects consistently**  
 
 ---
 
-## 💬 Little Reminder
+## 🌟 Featured Work / Projects
 <p align="center">
-  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=light" />
+  <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" width="300"/>
 </p>
 
-> **“Small steps every day lead to big changes.”** 🌸  
+- 🖥️ Simple software projects in **C & C++**  
+- 🌐 Web apps using **HTML, CSS, JS, React**  
+- 🔗 API experiments & small tools in Python  
+- 🗄️ SQL database experiments & practice queries  
+
+---
+
+## 📊 GitHub Analytics
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Muskan-Gangwani&show_icons=true&theme=gruvbox&hide_border=true" width="48%"/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Muskan-Gangwani&theme=gruvbox&hide_border=true" width="48%"/>
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Muskan-Gangwani&layout=compact&theme=gruvbox&hide_border=true" width="50%"/>
+</p>
+
+---
+
+## 💬 Quote / Mindset
+<p align="center">
+  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=gruvbox" />
+</p>
+
+> **“Focus, consistency, and practice create mastery.”**  
 
 ---
 
 <p align="center">
-  🌷 Learning with patience • Coding with love • Growing gently ✨
-</p>
-
-<!-- Footer -->
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=soft&color=0:e0c3fc,50:ffe4ec,100:ffd1dc&height=120&section=footer"/>
+  🚀 Creative coder • Consistent learner • Future Python developer ✨
 </p>

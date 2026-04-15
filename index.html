@@ -1,209 +1,982 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Varun Mangwani Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-  /* ---- General ---- */
-  * {margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth;}
-  body {font-family:'Roboto', sans-serif; background:#0f172a; color:#f1f5f9;}
-  a {text-decoration:none; color:inherit;}
-  section {padding:100px 20px; min-height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column;}
-  
-  /* ---- Hero ---- */
-  #hero {text-align:center; position:relative;}
-  #hero h1 {
-    font-size:2rem;
-    margin-bottom:10px;
-    color:#f1f5f9;
-  }
-  .name {
-    font-family:'Great Vibes', cursive;
-    font-size:4rem;
-    color:#6366f1;
-    white-space:nowrap;
-    overflow:hidden;
-    border-right:0.15em solid #22d3ee;
-    width:0;
-    animation: typing 3s steps(20) forwards, blink 0.75s step-end infinite;
-  }
-  nav {margin-top:30px; display:flex; gap:20px; flex-wrap:wrap;}
-  nav a {padding:8px 15px; border-radius:20px; background:#1e293b; transition:0.3s; color:#22d3ee; font-size:1rem;}
-  nav a:hover {background:#6366f1; color:#fff;}
-  
-  /* ---- About ---- */
-  #about {flex-direction:column;}
-  .about-card {background:#1e293b; padding:40px; border-radius:25px; max-width:900px; text-align:left; box-shadow:0 4px 15px rgba(0,0,0,0.3);}
-  .about-card h2 {color:#6366f1; margin-bottom:20px;}
-  .about-card p {margin-bottom:15px; line-height:1.6;}
-  .about-details {display:flex; gap:20px; flex-wrap:wrap;}
-  .detail-box {background:#0f172a; padding:20px; border-radius:20px; flex:1; min-width:200px; box-shadow:0 4px 10px rgba(0,0,0,0.2);}
-  .detail-box h3 {margin-bottom:10px; color:#22d3ee;}
-  
-  /* ---- Projects ---- */
-  #projects {flex-direction:column;}
-  #projects h2 {color:#6366f1; margin-bottom:30px;}
-  .projects-container {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; width:100%;}
-  .project-card {background:#1e293b; padding:20px; border-radius:20px; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;}
-  .project-card:hover {transform:scale(1.05); box-shadow:0 6px 20px rgba(0,0,0,0.5);}
-  .project-card h3 {color:#6366f1; margin-bottom:10px;}
-  .project-card a {color:#22d3ee; display:inline-block; margin-top:10px; transition:0.3s;}
-  .project-card a:hover {color:#6366f1;}
-  
-  /* ---- Skills ---- */
-  #skills {flex-direction:column;}
-  #skills h2 {color:#6366f1; margin-bottom:30px;}
-  .skill {width:300px; margin:10px 0;}
-  .skill-name {margin-bottom:5px;}
-  .skill-bar {background:#1e293b; border-radius:20px; overflow:hidden; height:15px;}
-  .skill-bar-fill {height:100%; width:0; background:#6366f1; border-radius:20px; transition:1s;}
-  
-  /* ---- Contact / Social ---- */
-  #contact h2 {color:#6366f1; margin-bottom:20px;}
-  .socials {display:flex; gap:30px; margin-top:20px;}
-  .socials a {display:flex; align-items:center; justify-content:center; width:50px; height:50px; border-radius:50%; background:#1e293b; transition:0.3s; color:#22d3ee;}
-  .socials a:hover {background:#6366f1; color:#fff;}
-  .socials svg {width:24px; height:24px;}
-  
-  /* ---- Animations ---- */
-  @keyframes typing {
-    from {width:0;}
-    to {width:16ch;} /* adjust based on character count */
-  }
-  @keyframes blink {
-    50% {border-color: transparent;}
-  }
 
-  /* ---- Responsive ---- */
-  @media(max-width:768px){
-    .name {font-size:3rem;}
-    nav a {font-size:0.9rem; padding:6px 12px;}
-    .projects-container {grid-template-columns:1fr;}
-    .skill {width:90%;}
-    .about-details {flex-direction:column;}
-  }
-</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Varun | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+  <style>
+
+    h1 {
+      font-weight: 900;
+      font-size: 70px;
+
+      background: linear-gradient(90deg, #00ffee, #ff00c8, #00ff88);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #contact {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.contact-icons a {
+  margin: 0 15px;
+  font-size: 30px;
+  color: #333;
+  transition: 0.3s;
+}
+
+.contact-icons a:hover {
+  color: #0077b5; /* LinkedIn blue as hover example */
+  transform: scale(1.2);
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #050505;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* RGB FLOW BACKGROUND */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 300%;
+      height: 300%;
+      top: 0;
+      left: 0;
+      background: linear-gradient(270deg,
+          #ff00c8,
+          #00ffee,
+          #ff0000,
+          #00ff88,
+          #002bff,
+          #ff00c8);
+      animation: flow 15s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes flow {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* DARK OVERLAY */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: -1;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      color: #00ffee;
+    }
+
+    .fact-grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .fact-card {
+      padding: 20px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(6px);
+      transition: 0.4s;
+      position: relative;
+    }
+
+    /* top glow line */
+    .fact-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #0ff, #ff00c8);
+      transition: 0.4s;
+    }
+
+    .fact-card:hover::before {
+      width: 100%;
+    }
+
+    .fact-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #0ff;
+    }
+
+    .fact-card h3 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .fact-card p {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      letter-spacing: 3px;
+
+    }
+
+    .hero p {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #aaa;
+    }
+
+    /* SECTION */
+    section {
+      padding: 80px 10%;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: #00ffee;
+    }
+
+    /* CARDS */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #00ffee;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    /* QUOTES */
+    .quote {
+      font-style: italic;
+      color: #ccc;
+      border-left: 3px solid #00ffee;
+      padding-left: 15px;
+      margin: 10px 0;
+    }
+
+    /* CONTACT */
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: #111;
+      border: none;
+      color: #fff;
+    }
+
+    .contact button {
+      padding: 10px 20px;
+      background: #00ffee;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+    }
+
+    .about-box {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      background: rgba(0, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+      line-height: 1.6;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      margin-top: 30px;
+      position: relative;
+      padding-left: 30px;
+      border-left: 2px solid #0ff;
+    }
+
+    .t-item {
+      position: relative;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 1s forwards;
+    }
+
+    /* delay effect */
+    .t-item:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .t-item:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .t-item:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .t-item:nth-child(4) {
+      animation-delay: 0.8s;
+    }
+
+    .t-item:nth-child(5) {
+      animation-delay: 1s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .quote-grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .quote-card {
+      padding: 20px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(6px);
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* glow line animation */
+    .quote-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #0ff, #ff00c8);
+      transition: 0.5s;
+    }
+
+    .quote-card:hover::before {
+      left: 0;
+    }
+
+    .quote-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 25px #0ff;
+    }
+
+    .quote-card h3 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .q {
+      color: #0ff;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .story {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .dot {
+      position: absolute;
+      left: -38px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: #0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .content h3 {
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .content p {
+      color: #aaa;
+    }
+
+    /* hover glow */
+    .t-item:hover .dot {
+      background: #ff00c8;
+      box-shadow: 0 0 15px #ff00c8;
+    }
+
+    .t-item:hover h3 {
+      color: #0ff;
+    }
+
+    .project-grid {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      padding: 20px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(6px);
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* glow line effect */
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #0ff, #ff00c8);
+      transition: 0.5s;
+    }
+
+    .project-card:hover::before {
+      left: 0;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 25px #0ff;
+    }
+
+    .graph-container {
+      margin-top: 60px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* base line */
+    .graph-container .line {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #0ff, #ff00c8, #0ff);
+      opacity: 0.5;
+      animation: flowLine 4s linear infinite;
+    }
+
+    @keyframes flowLine {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+
+    /* nodes */
+    .node {
+      width: 160px;
+      padding: 15px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(6px);
+      text-align: center;
+      position: relative;
+      transition: 0.4s;
+      cursor: pointer;
+    }
+
+    /* dot */
+    .node::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      background: #0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    /* hover effect */
+    .node:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 25px #0ff;
+      border-color: #ff00c8;
+    }
+
+    .node:hover::before {
+      background: #ff00c8;
+      box-shadow: 0 0 15px #ff00c8;
+    }
+
+    .node span {
+      display: block;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .node small {
+      color: #aaa;
+      display: block;
+      margin-top: 5px;
+      font-size: 12px;
+    }
+
+    .project-card h3 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+
+    /* TAGS */
+    .tags {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tags span {
+      font-size: 12px;
+      padding: 5px 10px;
+      border: 1px solid #0ff;
+      border-radius: 20px;
+      color: #0ff;
+      transition: 0.3s;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 10%;
+    }
+
+    .intro {
+      color: #aaa;
+      font-size: 20px;
+      letter-spacing: 2px;
+    }
+
+    .name {
+      font-size: 65px;
+      color: #fff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #0ff;
+      }
+
+      to {
+        text-shadow: 0 0 30px #ff00c8;
+      }
+    }
+
+    .typing {
+      color: #0ff;
+      font-size: 22px;
+      margin-top: 10px;
+    }
+
+    .typing span {
+      border-right: 2px solid #0ff;
+      padding-right: 5px;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    .tags span:hover {
+      background: #0ff;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    .center-hero {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .name {
+      font-size: 70px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 2px;
+
+      /* glow effect */
+
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    .roles {
+      margin-top: 15px;
+      font-size: 22px;
+      color: #00e5ff;
+    }
+
+    /* blinking cursor */
+    #typing {
+      border-right: 2px solid #00e5ff;
+      padding-right: 5px;
+      animation: blink 0.7s infinite;
+    }
+
+    /* animations */
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Hero -->
-<section id="hero">
-  <h1>Hi, my name is</h1>
-  <h2 class="name">Varun Mangwani</h2>
   <nav>
     <a href="#about">About</a>
+    <a href="#work">Work</a>
     <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
+    <a href="#future">Future</a>
     <a href="#contact">Contact</a>
   </nav>
-</section>
 
-<!-- About -->
-<section id="about">
-  <div class="about-card">
-    <h2>About Me</h2>
-    <p>Hello! I'm <strong>Varun Mangwani</strong>, a passionate developer and designer focused on creating sleek, modern, and interactive web experiences. I enjoy building web apps, exploring UI/UX trends, and learning new technologies.</p>
-    
-    <div class="about-details">
-      <div class="detail-box">
-        <h3>Experience</h3>
-        <p>Worked on multiple projects in web development, design, and freelance coding tasks, delivering high-quality responsive websites.</p>
+  <div class="center-hero">
+    <h1 class="name">Varun Mangwani</h1>
+    <h2 class="roles">
+      <span id="typing"></span>
+    </h2>
+  </div>
+  <section id="about">
+
+    <h2 style="color:#0ff; text-shadow:0 0 10px #0ff;">About Me</h2>
+
+    <div class="about-box">
+      <p>
+        I am <b>Varun Mangwani</b>, a passionate developer and problem solver who has been exploring technology since
+        <b>2017</b>.
+        My journey started with curiosity about <b>cybersecurity</b>, which later evolved into web development and
+        software engineering.
+        Over time, I expanded into programming, system design, and full-stack development.
+      </p>
+
+      <p>
+        Currently in <b>2025</b>, I am pursuing my <b>BCA (Bachelor of Computer Applications)</b> while actively
+        building projects in
+        web development, Java applications, and secure systems.
+      </p>
+    </div>
+
+    <h2 style="margin-top:50px; color:#0ff;">Journey Timeline</h2>
+
+    <div class="timeline">
+
+      <div class="t-item">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>2017 – Cybersecurity Curiosity 🔐</h3>
+          <p>Started exploring computers, networks, and cybersecurity basics. Built curiosity about how systems work and
+            break.</p>
+        </div>
       </div>
-      <div class="detail-box">
-        <h3>Skills</h3>
-        <p>HTML, CSS, JavaScript, Python, UI/UX Design, Responsive Design, Git, and modern web frameworks.</p>
+
+      <div class="t-item">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>2019 – Web Development 🌐</h3>
+          <p>Learned HTML, CSS, JavaScript. Built first websites and UI experiments.</p>
+        </div>
       </div>
-      <div class="detail-box">
-        <h3>Education</h3>
-        <p>Completed 12th grade, currently learning advanced web technologies and development practices.</p>
+
+      <div class="t-item">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>2021 – Programming Phase 💻</h3>
+          <p>Learned Java, C, C++. Built desktop apps using Java Swing and improved logic building.</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- Projects -->
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="projects-container">
-    <div class="project-card">
-      <h3>Portfolio Website</h3>
-      <p>A sleek personal portfolio showcasing projects, skills, and contact info with dark theme and interactive cards.</p>
-      <a href="https://github.com/VarunMangwani/portfolio" target="_blank">View Project</a>
-    </div>
-    <div class="project-card">
-      <h3>Task Manager App</h3>
-      <p>A web app for managing daily tasks with add/edit/delete functionality and a responsive UI.</p>
-      <a href="https://github.com/VarunMangwani/taskmanager" target="_blank">View Project</a>
-    </div>
-    <div class="project-card">
-      <h3>Weather Dashboard</h3>
-      <p>A weather app fetching data from API, displaying temperature, forecast, and location info dynamically.</p>
-      <a href="https://github.com/VarunMangwani/weatherapp" target="_blank">View Project</a>
-    </div>
-    <div class="project-card">
-      <h3>Blog Website</h3>
-      <p>A modern blog platform with post creation, editing, and responsive design.</p>
-      <a href="https://github.com/VarunMangwani/blogsite" target="_blank">View Project</a>
-    </div>
-    <div class="project-card">
-      <h3>To-Do List App</h3>
-      <p>Simple to-do list application with clean UI, allowing users to add, edit, and delete tasks.</p>
-      <a href="https://github.com/VarunMangwani/todolist" target="_blank">View Project</a>
-    </div>
-  </div>
-</section>
+      <div class="t-item">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>2023 – Projects & Systems 🛠️</h3>
+          <p>Built real-world systems like college management and library systems. Focused on scalable vs non-scalable
+            apps.</p>
+        </div>
+      </div>
 
-<!-- Skills -->
-<section id="skills">
-  <h2>Skills</h2>
-  <div class="skill">
-    <div class="skill-name">HTML & CSS</div>
-    <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
-  </div>
-  <div class="skill">
-    <div class="skill-name">JavaScript</div>
-    <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
-  </div>
-  <div class="skill">
-    <div class="skill-name">Python</div>
-    <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
-  </div>
-  <div class="skill">
-    <div class="skill-name">UI/UX Design</div>
-    <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
-  </div>
-</section>
+      <div class="t-item">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>2025 – BCA Journey 🎓</h3>
+          <p>Currently pursuing BCA. Learning full-stack development, secure systems, and improving problem-solving
+            skills.</p>
+        </div>
+      </div>
 
-<!-- Contact / Social -->
+    </div>
+
+  </section>
+
+  <<section id="projects">
+
+    <h2 style="color:#0ff; text-shadow:0 0 10px #0ff;">
+      Projects & Work
+    </h2>
+
+    <p style="color:#aaa; margin-top:10px;">
+      A collection of systems, applications, and experiments built during my learning journey in programming, web
+      development, and system design.
+    </p>
+
+    <div class="project-grid">
+
+      <!-- C PROJECT -->
+      <div class="project-card">
+        <h3>College Management System (C Language)</h3>
+        <p>
+          A complete terminal-based system built in C for managing students, attendance, records, and administrative
+          data.
+          Focused on file handling, structured programming, and system logic.
+        </p>
+        <div class="tags">
+          <span>C</span>
+          <span>File Handling</span>
+          <span>CLI System</span>
+        </div>
+      </div>
+
+      <!-- JAVA PROJECT -->
+      <div class="project-card">
+        <h3>Student Management System (Java)</h3>
+        <p>
+          Desktop-based application built using Java. Handles student records, marks, and data operations using OOP
+          principles.
+        </p>
+        <div class="tags">
+          <span>Java</span>
+          <span>OOP</span>
+          <span>Swing</span>
+        </div>
+      </div>
+
+      <!-- TERMINAL PORTFOLIO -->
+      <div class="project-card">
+        <h3>Terminal Portfolio System</h3>
+        <p>
+          A hacker-style interactive portfolio interface inspired by CLI systems, simulating terminal commands and
+          system access UI.
+        </p>
+        <div class="tags">
+          <span>HTML</span>
+          <span>JS</span>
+          <span>UI Simulation</span>
+        </div>
+      </div>
+
+      <!-- WEB DEV -->
+      <div class="project-card">
+        <h3>Web Development Projects</h3>
+        <p>
+          Modern responsive websites using HTML, CSS, JavaScript. Focused on UI design, animations, and interactive
+          interfaces.
+        </p>
+        <div class="tags">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>React</span>
+        </div>
+      </div>
+
+    </div>
+
+    </section>
+    <section id="future">
+
+      <h2 style="color:#0ff; text-shadow:0 0 10px #0ff;">
+        Future Roadmap
+      </h2>
+
+      <p style="color:#aaa; margin-top:10px;">
+        A continuous evolution path toward advanced software engineering, AI systems, and intelligent algorithm design.
+      </p>
+
+      <div class="graph-container">
+
+        <div class="line"></div>
+
+        <div class="node">
+          <span>Java Dev</span>
+          <small>Scalable Systems</small>
+        </div>
+
+        <div class="node">
+          <span>Python</span>
+          <small>Automation & Backend</small>
+        </div>
+
+        <div class="node">
+          <span>AI / ML</span>
+          <small>Intelligent Systems</small>
+        </div>
+
+        <div class="node">
+          <span>Algorithms</span>
+          <small>Design & Optimization</small>
+        </div>
+
+        <div class="node">
+          <span>Deep Learning</span>
+          <small>Neural Networks</small>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="quotes">
+
+      <h2 style="color:#0ff; text-shadow:0 0 10px #0ff;">
+        Quotes & Mindset
+      </h2>
+
+      <p style="color:#aaa; margin-top:10px;">
+        Lessons learned from books that shaped discipline, thinking, and focus in my journey.
+      </p>
+
+      <div class="quote-grid">
+
+        <!-- YOU CAN BE A WINNER -->
+        <div class="quote-card">
+          <h3>You Can Be a Winner</h3>
+          <p class="q">
+            "Winners don’t do different things, they do things differently."
+          </p>
+          <p class="story">
+            This idea shaped my discipline in coding — consistency matters more than talent.
+            Small improvements in coding every day lead to strong systems over time.
+          </p>
+        </div>
+
+        <!-- SUBCONSCIOUS MIND -->
+        <div class="quote-card">
+          <h3>The Power of Your Subconscious Mind</h3>
+          <p class="q">
+            "Whatever you consciously believe, you will eventually experience."
+          </p>
+          <p class="story">
+            This taught me that mindset shapes execution.
+            When I approach programming with confidence, solutions become clearer and faster.
+          </p>
+        </div>
+
+        <!-- DEEP WORK -->
+        <div class="quote-card">
+          <h3>Deep Work</h3>
+          <p class="q">
+            "Deep work is the ability to focus without distraction on a cognitively demanding task."
+          </p>
+          <p class="story">
+            This became my core principle for coding sessions — no distractions, only focused problem solving.
+            It helped me build better logic, systems, and cleaner code.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="personality">
+
+      <h2 style="color:#0ff; text-shadow:0 0 10px #0ff;">
+        Developer Profile
+      </h2>
+
+      <p style="color:#aaa; margin-top:10px;">
+        Core facts and abilities that define my development journey and technical mindset.
+      </p>
+
+      <div class="fact-grid">
+
+        <div class="fact-card">
+          <h3>Python Learning Speed</h3>
+          <p>I learned Python in just <b>2 months</b>, focusing on logic building, automation, and backend fundamentals.
+          </p>
+        </div>
+
+        <div class="fact-card">
+          <h3>Full Stack Developer</h3>
+          <p>I build complete web applications using <b>HTML, CSS, JavaScript, React, Node.js, and Next.js</b>.</p>
+        </div>
+
+        <div class="fact-card">
+          <h3>Java Expertise</h3>
+          <p>Strong in <b>Java programming</b> with deep understanding of OOP concepts and real-world application logic.
+          </p>
+        </div>
+
+        <div class="fact-card">
+          <h3>Desktop Applications</h3>
+          <p>Built multiple applications using <b>Java Swing (javax.swing)</b> including management systems and UI-based
+            tools.</p>
+        </div>
+
+        <div class="fact-card">
+          <h3>Problem Solving Mindset</h3>
+          <p>Focused on writing optimized logic, scalable solutions, and structured system design thinking.</p>
+        </div>
+
+        <div class="fact-card">
+          <h3>Developer Identity</h3>
+          <p>I am a builder — combining web, software, and system thinking into practical real-world solutions.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Contact Section -->
 <section id="contact">
   <h2>Contact Me</h2>
-  <div class="socials">
-    <a href="https://github.com/VarunMangwani" target="_blank" aria-label="GitHub">
-      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.724-4.033-1.416-4.033-1.416-.546-1.385-1.333-1.754-1.333-1.754-1.089-.744.082-.729.082-.729 1.205.085 1.84 1.24 1.84 1.24 1.07 1.835 2.807 1.305 3.492.997.107-.775.418-1.305.76-1.605-2.665-.3-5.467-1.335-5.467-5.932 0-1.31.465-2.382 1.235-3.222-.123-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.45 11.45 0 0 1 3-.404c1.02.005 2.045.138 3 .404 2.29-1.552 3.297-1.23 3.297-1.23.655 1.653.242 2.873.12 3.176.77.84 1.233 1.912 1.233 3.222 0 4.61-2.807 5.628-5.48 5.922.43.37.823 1.096.823 2.21v3.277c0 .32.218.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+
+  <div class="contact-icons">
+
+    <!-- GitHub -->
+    <a href="https://github.com/Varun-Mangwani" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-github"></i>
     </a>
-    <a href="https://linkedin.com/in/VarunMangwani" target="_blank" aria-label="LinkedIn">
-      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C3.34 3.5 2 4.84 2 6.5S3.34 9.5 4.98 9.5s2.98-1.34 2.98-3S6.62 3.5 4.98 3.5zM2 21h5.95V10.5H2V21zM9.1 10.5V21h5.95v-5.5c0-3.34 4-3.6 4 0V21H24v-6c0-5.52-6-5.33-6 0V21H9.1z"/></svg>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/varun-mangwani" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-linkedin"></i>
     </a>
-    <a href="mailto:varun.mangwani@example.com" target="_blank" aria-label="Gmail">
-      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-8.713h23.97L12 12.713zM0 4.1V20h24V4.1L12 13.287 0 4.1z"/></svg>
-    </a>
+
+    <!-- Gmail -->
+    <a href="mailto:arblaster8@gmail.com">
+  <i class="fas fa-envelope"></i>
+</a>
+
   </div>
 </section>
-
-<script>
-  // Animate skill bars on scroll
-  const skills = document.querySelectorAll('.skill-bar-fill');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.style.width = entry.target.style.width;
-      }
-    });
-  }, {threshold:0.5});
-  skills.forEach(skill => observer.observe(skill));
-</script>
+    <footer>
+      © 2026 Varun | Built With Knoledge ⚡
+    </footer>
 
 </body>
+
 </html>

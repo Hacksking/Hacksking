@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vicious Digital Agency</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+html { scroll-behavior: smooth; }
+
+body {
+  background: black;
+  overflow-x: hidden;
+}
+
+/* glow */
+.red-glow {
+  text-shadow: 0 0 25px rgba(255,0,0,0.6);
+}
+
+/* bubbles */
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 0, 0, 0.15);
+  border-radius: 50%;
+  animation: rise 12s infinite ease-in;
+}
+
+.bubble:nth-child(2) { left: 20%; animation-delay: 2s; }
+.bubble:nth-child(3) { left: 40%; animation-delay: 4s; }
+.bubble:nth-child(4) { left: 60%; width: 25px; height: 25px; animation-delay: 1s; }
+.bubble:nth-child(5) { left: 80%; animation-delay: 3s; }
+.bubble:nth-child(6) { left: 90%; animation-delay: 5s; }
+
+@keyframes rise {
+  0% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 0.4; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* cards */
+.card {
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,0,0,0.3);
+  padding: 25px;
+  border-radius: 16px;
+  transition: 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: red;
+  box-shadow: 0 0 30px rgba(255,0,0,0.3);
+}
+.cursor {
+  display: inline-block;
+  animation: blink 0.8s infinite;
+  color: red;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+</style>
+</head>
+
+<body class="text-white">
+
+<!-- BACKGROUND -->
+<div class="fixed inset-0 -z-10 overflow-hidden">
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+</div>
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full bg-black/70 backdrop-blur-md border-b border-red-600 z-50">
+  <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+
+    <h1 class="text-red-500 font-bold text-xl tracking-widest">VICIOUS</h1>
+
+    <div class="hidden md:flex gap-6 text-sm">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <a href="login.html" class="bg-red-600 px-4 py-2 rounded">
+      Login
+    </a>
+
+  </div>
+</nav>
+
+<!-- HERO -->
+<<section id="home" class="h-screen flex items-center justify-center text-center px-6">
+
+  <div>
+    <h1 class="text-6xl md:text-7xl font-extrabold red-glow">
+      VICIOUS
+    </h1>
+
+    <!-- typing text -->
+    <p class="text-gray-300 mt-4 text-lg">
+      <span id="typingText"></span><span class="cursor">|</span>
+    </p>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-20 max-w-5xl mx-auto px-6">
+
+  <h2 class="text-3xl font-bold text-red-500 mb-6">About Us</h2>
+
+  <p class="text-gray-300 leading-relaxed">
+    Vicious Digital Agency is a modern growth-focused digital company specializing in marketing, automation,
+    and brand scaling systems. We help businesses grow using data-driven strategies, creative content,
+    and advanced automation tools.
+    <br><br>
+
+    <span class="text-red-500 font-bold">Founder: Varun</span><br>
+    Varun is a 5+ year experienced developer, designer, and creator with expertise in:
+    coding, programming, video editing, graphics design, beat production, and automation systems.
+    <br><br>
+
+    His vision is to build powerful digital systems that replace manual business work with smart automation
+    and scalable online growth engines.
+  </p>
+
+  <!-- TIMELINE -->
+  <div class="mt-10 border-l border-red-600 pl-6 space-y-6">
+
+    <div>
+      <h3 class="text-red-500 font-bold">Phase 1 — Learning</h3>
+      <p class="text-gray-400">Started with programming, web design, and creative media production.</p>
+    </div>
+
+    <div>
+      <h3 class="text-red-500 font-bold">Phase 2 — Skill Expansion</h3>
+      <p class="text-gray-400">Mastered full-stack development, editing, automation, and digital marketing.</p>
+    </div>
+
+    <div>
+      <h3 class="text-red-500 font-bold">Phase 3 — Vicious Launch</h3>
+      <p class="text-gray-400">Built Vicious Digital Agency as a complete brand growth ecosystem.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-20 px-6">
+
+  <h2 class="text-3xl font-bold text-center text-red-500 mb-12">
+    Our Services
+  </h2>
+
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+
+    <div class="card">
+      <h3 class="text-xl font-bold">SEO Optimization</h3>
+      <p class="text-gray-300 mt-2">
+        Advanced keyword research, backlink strategies, and on-page optimization to rank your business on top of Google.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3 class="text-xl font-bold">Social Media Marketing</h3>
+      <p class="text-gray-300 mt-2">
+        Viral content strategies for Instagram, Facebook, and YouTube to grow audience and engagement rapidly.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3 class="text-xl font-bold">Paid Advertising</h3>
+      <p class="text-gray-300 mt-2">
+        High ROI ad campaigns on Meta & Google designed for conversions, not just clicks.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3 class="text-xl font-bold">Web Development</h3>
+      <p class="text-gray-300 mt-2">
+        Modern, fast, responsive websites with strong UI/UX design and performance optimization.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3 class="text-xl font-bold">Automation Systems</h3>
+      <p class="text-gray-300 mt-2">
+        Smart automation tools and bots to reduce manual work and scale business operations.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3 class="text-xl font-bold">Data & Analytics</h3>
+      <p class="text-gray-300 mt-2">
+        Business intelligence dashboards, tracking systems, and data-driven growth insights.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-20 px-6">
+
+  <h2 class="text-3xl font-bold text-center text-red-500 mb-10">
+    Projects
+  </h2>
+
+  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+    <div class="card">
+      <h3 class="font-bold">Marketing Dashboard System</h3>
+      <p class="text-gray-400 mt-2">Full analytics system for tracking campaigns and performance.</p>
+    </div>
+
+    <div class="card">
+      <h3 class="font-bold">Automation Bot Platform</h3>
+      <p class="text-gray-400 mt-2">Smart automation system for business workflows.</p>
+    </div>
+
+    <div class="card">
+      <h3 class="font-bold">SEO Tracking Tool</h3>
+      <p class="text-gray-400 mt-2">Tool for monitoring keyword ranking and SEO growth.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 px-6 text-center">
+
+  <h2 class="text-3xl font-bold text-red-500 mb-6">Contact Us</h2>
+
+  <p class="text-gray-400 mb-6">
+    Let's build something powerful together. Reach out for collaborations or business inquiries.
+  </p>
+
+  <div class="flex justify-center gap-8 text-2xl">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fas fa-envelope"></i></a>
+  </div>
+
+</section>
+
+<script>
+const words = [
+  "Digital Marketing Agency",
+  "Social Media Growth Experts",
+  "Automation & AI Systems",
+  "Web Development Studio",
+  "Brand Growth Engine"
+];
+
+let i = 0;
+let j = 0;
+let currentWord = "";
+let isDeleting = false;
+
+function typeEffect() {
+  currentWord = words[i];
+
+  if (isDeleting) {
+    j--;
+  } else {
+    j++;
+  }
+
+  document.getElementById("typingText").innerText =
+    currentWord.substring(0, j);
+
+  if (!isDeleting && j === currentWord.length) {
+    isDeleting = true;
+    setTimeout(typeEffect, 1200);
+    return;
+  }
+
+  if (isDeleting && j === 0) {
+    isDeleting = false;
+    i = (i + 1) % words.length;
+  }
+
+  setTimeout(typeEffect, isDeleting ? 60 : 120);
+}
+
+typeEffect();
+</script>
+</body>
+</html>

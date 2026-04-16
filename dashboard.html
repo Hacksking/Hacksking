@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vicious Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body {
+  background: #0a0a0a;
+}
+
+/* sidebar */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: black;
+  border-right: 1px solid red;
+}
+
+/* main */
+.main {
+  margin-left: 250px;
+}
+
+/* table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #222;
+}
+
+tr:hover {
+  background: #111;
+}
+</style>
+</head>
+
+<body class="text-white">
+
+<!-- SIDEBAR -->
+<div class="sidebar p-6">
+  <h1 class="text-red-500 text-2xl font-bold mb-8">VICIOUS</h1>
+
+  <ul class="space-y-4 text-gray-300">
+    <li class="text-white">Dashboard</li>
+    <li>API Data</li>
+    <li>Analytics</li>
+    <li>Settings</li>
+  </ul>
+
+  <button onclick="logout()"
+    class="mt-10 w-full bg-red-600 py-2 rounded hover:bg-red-700">
+    Logout
+  </button>
+</div>
+
+<!-- MAIN -->
+<div class="main p-8">
+
+  <h1 class="text-3xl font-bold text-red-500 mb-6">Dashboard</h1>
+
+  <!-- STATS -->
+  <div class="grid grid-cols-3 gap-4 mb-8">
+
+    <div class="bg-black border border-red-600 p-4 rounded">
+      <h2 class="text-gray-400">Total Items</h2>
+      <p id="total" class="text-2xl font-bold">0</p>
+    </div>
+
+    <div class="bg-black border border-white p-4 rounded">
+      <h2 class="text-gray-400">Active Data</h2>
+      <p class="text-2xl font-bold">Live</p>
+    </div>
+
+    <div class="bg-black border border-red-600 p-4 rounded">
+      <h2 class="text-gray-400">API Status</h2>
+      <p class="text-green-500">Connected</p>
+    </div>
+
+  </div>
+
+  <!-- ADD DATA -->
+  <div class="bg-black border border-red-600 p-4 rounded mb-6">
+
+    <h2 class="text-xl mb-3">Add New Item (POST)</h2>
+
+    <input id="name" placeholder="Name"
+      class="p-2 bg-black border border-red-600 mr-2">
+
+    <input id="desc" placeholder="Description"
+      class="p-2 bg-black border border-white mr-2">
+
+    <button onclick="addItem()"
+      class="bg-red-600 px-4 py-2 rounded">
+      Add
+    </button>
+
+  </div>
+
+  <!-- TABLE -->
+  <div class="bg-black border border-red-600 p-4 rounded">
+
+    <h2 class="text-xl mb-4">API Data (GET)</h2>
+
+    <table>
+      <thead>
+        <tr class="text-red-500">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id="tableData"></tbody>
+    </table>
+
+  </div>
+
+</div>
+
+<script>
+const API = "https://your-api.onrender.com/api/items"; 
+// 🔴 change this to your real Render API
+
+// GET DATA
+async function fetchData() {
+  const res = await fetch(API);
+  const data = await res.json();
+
+  document.getElementById("total").innerText = data.length;
+
+  let rows = "";
+
+  data.forEach(item => {
+    rows += `
+      <tr>
+        <td>${item._id || item.id}</td>
+        <td>${item.name}</td>
+        <td>${item.description}</td>
+        <td>
+          <button onclick="deleteItem('${item._id || item.id}')"
+            class="text-red-500">Delete</button>
+          
+          <button onclick="updateItem('${item._id || item.id}')"
+            class="text-blue-400 ml-2">Edit</button>
+        </td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("tableData").innerHTML = rows;
+}
+
+// POST DATA
+async function addItem() {
+  const name = document.getElementById("name").value;
+  const description = document.getElementById("desc").value;
+
+  await fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, description })
+  });
+
+  fetchData();
+}
+
+// DELETE
+async function deleteItem(id) {
+  await fetch(`${API}/${id}`, {
+    method: "DELETE"
+  });
+
+  fetchData();
+}
+
+// UPDATE (simple prompt method)
+async function updateItem(id) {
+  const name = prompt("New Name:");
+  const description = prompt("New Description:");
+
+  await fetch(`${API}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, description })
+  });
+
+  fetchData();
+}
+
+// LOGOUT
+function logout() {
+  window.location.href = "login.html";
+}
+
+// INIT
+fetchData();
+</script>
+
+</body>
+</html>

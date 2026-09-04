@@ -1,6 +1,6 @@
 <!-- Top Banner -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&section=header&text=Muskan%20Gangwani&fontSize=45&fontColor=ffffff&color=gradient&animation=fadeIn&fontAlignY=35" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&section=header&text=MJayesh&fontSize=45&fontColor=ffffff&color=gradient&animation=fadeIn&fontAlignY=35" />
 </p>
 
 
